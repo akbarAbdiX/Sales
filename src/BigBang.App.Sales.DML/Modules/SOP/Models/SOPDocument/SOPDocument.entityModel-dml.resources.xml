@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<resources>
+		<resource key="SALSOPDocumentPrint">SALSOPDocumentPrint.mrt</resource>
+		<resource key="SALSOPInvoiceIssuanceRequestPrint">SALSOPInvoiceIssuanceRequestPrint.mrt</resource>
+		<resource key="SALSOPInvoicetPrint">SALSOPInvoicetPrint.mrt</resource>
+	</resources>
+</configuration>

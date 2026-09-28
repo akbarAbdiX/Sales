@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<IsPackable>false</IsPackable>
+		<TargetFramework>net8.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\BigBang.config" Link="BigBang.config">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="BigBang" Version="4.0.0-alpha.3822" />
+		<PackageReference Include="BigBang.App.ERPSuiteCore" Version="0.1.0-stage.30" />
+		<PackageReference Include="BigBang.App.ERPSuiteCore.DML" Version="0.1.0-stage.30" />
+		<PackageReference Include="BigBang.App.ERPSuiteCore.Domain" Version="0.1.0-stage.30" />
+		<PackageReference Include="BigBang.App.ERPSuiteCore.Migrations" Version="0.1.0-stage.30" />
+		<PackageReference Include="BigBang.App.Attachment" Version="4.0.0-alpha.3822" />
+		<PackageReference Include="BigBang.App.Authentication" Version="4.0.0-alpha.3822" />
+		<PackageReference Include="BigBang.App.ImportExport" Version="4.0.0-alpha.3822" />
+		<PackageReference Include="BigBang.App.LocalAuthentication" Version="4.0.0-alpha.3822" />
+		<PackageReference Include="BigBang.App.LocalAuthenticationPI" Version="4.0.0-alpha.3822" />
+		<PackageReference Include="BigBang.App.PersonalInformation" Version="4.0.0-alpha.3822" />
+		<PackageReference Include="BigBang.WebRunner" Version="4.0.0-alpha.3822" />
+		<ProjectReference Include="..\BigBang.App.Sales\BigBang.App.Sales.csproj" />
+	</ItemGroup>
+</Project>

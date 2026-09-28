@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPPaymentTerm" table="[tblSOPPaymentTerm]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="Id" type="Int32">
+      <column name="Id" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <property name="PerAmount" type="Decimal">
+      <column name="PerAmount" not-null="true" precision="5" scale="2" sql-type="decimal" />
+    </property>
+    <property name="Amount" type="Decimal">
+      <column name="Amount" not-null="true" precision="18" scale="0" sql-type="decimal" />
+    </property>
+    <property name="DueDate" type="DateTime">
+      <column name="DueDate" not-null="false" sql-type="date" />
+    </property>
+    <property name="IsDeductible" type="Boolean">
+      <column name="IsDeductible" not-null="false" sql-type="bit" />
+    </property>
+    <property name="IsGuarantee" type="Boolean">
+      <column name="IsGuarantee" not-null="false" sql-type="bit" />
+    </property>
+    <property name="ReleaseCondition" type="String">
+      <column name="ReleaseCondition" not-null="false" sql-type="nvarchar" length="2147483647" />
+    </property>
+    <property name="Description" type="String">
+      <column name="Description" not-null="false" sql-type="nvarchar" length="500" />
+    </property>
+    <property name="SettlementMethod" type="BigBang.App.Sales.Domain.Enums.DbSOPSettlementMethodEnumType, BigBang.App.Sales.Domain">
+      <column name="SettlementMethod" not-null="false" precision="3" scale="0" sql-type="tinyint" />
+    </property>
+    <many-to-one name="Document" class="BigBang.App.Sales.Domain.SALSOPDocument,BigBang.App.Sales.Domain">
+      <column name="DocumentId" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="DueType" class="BigBang.App.Sales.Domain.SALSOPDueType,BigBang.App.Sales.Domain">
+      <column name="DueTypeId" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="GuaranteeType" class="BigBang.App.Sales.Domain.SALSOPGuaranteeType,BigBang.App.Sales.Domain">
+      <column name="GuaranteeTypeId" not-null="false" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="PaymentTermsType" class="BigBang.App.Sales.Domain.SALSOPPaymentTermsType,BigBang.App.Sales.Domain">
+      <column name="PaymentTermsTypeId" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel/table">
+  <table schemaOwner="dbo" name="tblSOPPaymentBreakdown" primaryColumnName="Id">
+    <columns>
+      <column Name="Id" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="true" netType="System.Int32" allowNull="false" />
+      <column Name="PhaseName" typeName="nvarchar" isComputed="false" isAutoNumber="false" length="200" netType="System.String" allowNull="false" />
+      <column Name="Title" typeName="nvarchar" isComputed="false" isAutoNumber="false" length="300" netType="System.String" allowNull="false" defaultValue="('')" />
+      <column Name="Amount" typeName="decimal" scale="2" precision="18" isComputed="false" isAutoNumber="false" netType="System.Decimal" allowNull="false" defaultValue="((0))" />
+      <column Name="DueDate" typeName="date" isComputed="false" isAutoNumber="false" netType="System.DateTime" allowNull="false" defaultValue="(getdate())" />
+      <column Name="DocumentId" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="false" />
+    </columns>
+    <relations>
+      <relation targetTable="tblSOPDocument" sourceColumn="DocumentId" deleteRule="NONE" />
+    </relations>
+  </table>
+</configuration>

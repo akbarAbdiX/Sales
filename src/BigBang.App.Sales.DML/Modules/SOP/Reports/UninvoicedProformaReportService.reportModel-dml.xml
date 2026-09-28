@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/report">
+	<reportModel name="UninvoicedProformaReportService.GetDocuments" displayName="گزارش پیش فاکتورهای باز " moduleName="SOP" reportType="Static" isSearchable="true">
+		<parametersCollection>
+			<parameters>
+				<parameter name="fromDate" displayName="از تاریخ" allowNull="true" sourceType="UserDefined">
+					<parameterType>
+						<dateTime/>
+					</parameterType>
+				</parameter>
+				<parameter name="toDate" displayName="تا تاریخ" allowNull="true" sourceType="UserDefined">
+					<parameterType>
+						<dateTime/>
+					</parameterType>
+				</parameter>
+			</parameters>
+		</parametersCollection>
+		<propertiesCollection>
+			<properties>
+				<property name="ProformaInvoiceNo" displayName="شماره پیش فاکتور">
+					<propertyType>
+						<int/>
+					</propertyType>
+				</property>
+				<property name="ProformaInvoiceDate" displayName="تاریخ ثبت پیش فاکتور">
+					<propertyType>
+						<dateTime/>
+					</propertyType>
+				</property>
+				<property name="CustomerName" displayName="مشتری">
+					<propertyType>
+						<string/>
+					</propertyType>
+				</property>
+				<property name="CurrentStage" displayName="وضعیت">
+					<propertyType>
+						<string/>
+					</propertyType>
+				</property>
+				<property name="TotalAmount" displayName="مبلغ نهایی">
+					<propertyType>
+						<decimal/>
+					</propertyType>
+					<formatType>
+						<currency/>
+					</formatType>
+				</property>
+				<property name="Description" displayName="توضیحات">
+					<propertyType>
+						<string/>
+					</propertyType>
+				</property>
+				<property name="ProformaInvoiceID" displayName="سند"  isSearchable="false" isVisible="false">
+					<propertyType>
+						<int/>
+					</propertyType>
+				</property>
+			</properties>
+		</propertiesCollection>
+		<subReports>
+			<subReport property="ProformaInvoiceNo" stepInMode="IgnoreDrillDownIfNull" target="GetItems" >
+				<bindings>
+					<property sourceProperty="ProformaInvoiceID" targetParameter="proformaInvoiceID"/>
+				</bindings>
+			</subReport>
+		</subReports>
+	</reportModel>
+</configuration>

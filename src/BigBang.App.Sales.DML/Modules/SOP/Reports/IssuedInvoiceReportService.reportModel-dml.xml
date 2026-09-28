@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/report">
+	<reportModel name="IssuedInvoiceReportService.GetIssuedInvoiceDocuments" displayName="گزارش فاکتورهای صادر شده " moduleName="SOP" reportType="Static" isSearchable="true">
+		<parametersCollection>
+			<parameters>
+				<parameter name="fromDate" displayName="از تاریخ" allowNull="true" sourceType="UserDefined">
+					<parameterType>
+						<dateTime/>
+					</parameterType>
+				</parameter>
+				<parameter name="toDate" displayName="تا تاریخ" allowNull="true" sourceType="UserDefined">
+					<parameterType>
+						<dateTime/>
+					</parameterType>
+				</parameter>
+			</parameters>
+		</parametersCollection>
+		<propertiesCollection>
+			<properties>
+				<property name="InvoiceNo" displayName="شماره فاکتور">
+					<propertyType>
+						<int/>
+					</propertyType>
+				</property>
+				<property name="IssueDate" displayName="تاریخ ثبت فاکتور">
+					<propertyType>
+						<dateTime/>
+					</propertyType>
+					<formatType>
+						<dateTime/>
+					</formatType>
+				</property>
+				<property name="CustomerName" displayName="مشتری">
+					<propertyType>
+						<string/>
+					</propertyType>
+				</property>
+				<property name="UniqueTaxIdentifier" displayName="شماره منحصر به فرد مالیاتی">
+					<propertyType>
+						<string/>
+					</propertyType>
+				</property>
+				<property name="Amount" displayName="مبلغ">
+					<propertyType>
+						<decimal/>
+					</propertyType>
+					<formatType>
+						<currency/>
+					</formatType>
+				</property>
+				<property name="DiscountAmount" displayName="تخفیف">
+					<propertyType>
+						<decimal/>
+					</propertyType>
+					<formatType>
+						<currency/>
+					</formatType>
+				</property>
+				<property name="TaxAmount" displayName="مالیات">
+					<propertyType>
+						<decimal/>
+					</propertyType>
+					<formatType>
+						<currency/>
+					</formatType>
+				</property>
+				<property name="TotalAmount" displayName="مبلغ نهایی">
+					<propertyType>
+						<decimal/>
+					</propertyType>
+					<formatType>
+						<currency/>
+					</formatType>
+				</property>
+				<property name="Description" displayName="توضیحات">
+					<propertyType>
+						<string/>
+					</propertyType>
+				</property>
+				<property name="DocumentID" displayName="سند"  isSearchable="false" isVisible="false">
+					<propertyType>
+						<int/>
+					</propertyType>
+				</property>
+			</properties>
+		</propertiesCollection>
+		<subReports>
+			<subReport property="InvoiceNo" stepInMode="IgnoreDrillDownIfNull" target="GetIssuedInvoiceItems" >
+				<bindings>
+					<property sourceProperty="DocumentID" targetParameter="documentID"/>
+				</bindings>
+			</subReport>
+		</subReports>
+	</reportModel>
+</configuration>

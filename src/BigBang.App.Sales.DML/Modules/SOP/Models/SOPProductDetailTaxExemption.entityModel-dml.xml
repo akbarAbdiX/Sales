@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+  <entityModel name="SALSOPProductDetailTaxExemption" displayName="معافیت مالیاتی محصولات" moduleName="SOP">
+    <propertiesCollection>
+      <properties>
+        <primitive name="ID" order="1" isReadOnly="true"  isVisible="false"/>
+		  <primitive name="ProductDetailId" order="2" displayName="محصول" >
+			  <virtualReference target="ERPSuiteCore.SuiteCoreProductDetail" />
+		  </primitive>
+        <primitive name="FromDate" order="4" displayName="از تاریخ" />
+        <primitive name="ToDate" order="5"  displayName="تا تاریخ"/>
+        <reference name="TaxExemptionType" order="3" displayName="نوع معافیت مالیاتی" />
+      </properties>
+    </propertiesCollection>
+  </entityModel>
+</configuration>

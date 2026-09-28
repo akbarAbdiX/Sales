@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPContractStage" table="[tblSOPContractStage]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="Id" type="Int32">
+      <column name="Id" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <property name="StartDate" type="DateTime">
+      <column name="StartDate" not-null="true" sql-type="date" />
+    </property>
+    <property name="EndDate" type="DateTime">
+      <column name="EndDate" not-null="false" sql-type="date" />
+    </property>
+    <many-to-one name="Document" class="BigBang.App.Sales.Domain.SALSOPDocument,BigBang.App.Sales.Domain">
+      <column name="DocumentId" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="SubContractStage" class="BigBang.App.Sales.Domain.SALSOPSubContractStage,BigBang.App.Sales.Domain">
+      <column name="SubContractStageId" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

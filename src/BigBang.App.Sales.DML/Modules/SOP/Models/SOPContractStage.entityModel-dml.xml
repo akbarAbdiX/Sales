@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+  <entityModel name="SALSOPContractStage" moduleName="SOP" displayName="مراحل قرارداد">
+    <propertiesCollection>
+      <properties>
+        <primitive name="Id" order="1" isReadOnly="true"  isVisible="false"/>
+        <primitive name="StartDate" order="3" displayName="تاریخ شروع" />
+        <primitive name="EndDate" order="4" displayName="تاریخ پایان" />
+        <reference name="Document" order="2" displayName="قرارداد"  isVisible="false"/>
+        <reference name="SubContractStage" order="5"  displayName="ریز مرحله"/>
+      </properties>
+    </propertiesCollection>
+	  <formatting>
+		  <property  name="SubContractStage"/>
+		  <constant value="-" />
+		  <property name="Document"/>
+	  </formatting>
+  </entityModel>
+</configuration>

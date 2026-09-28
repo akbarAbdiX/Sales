@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/form">
+  <form name="100" displayName=" تعدیلات " moduleName="SOP">
+	  <panel>
+		  <modelComponent name="Adjustment" model="SALSOPAdjustment"></modelComponent>
+	  </panel>
+  </form>
+</configuration>

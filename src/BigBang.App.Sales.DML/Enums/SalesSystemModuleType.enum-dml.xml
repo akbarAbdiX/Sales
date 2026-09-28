@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/enum">
+	<enum name="SalesSystemModuleType">
+		<members>
+			<member name="SuperAdmin" displayName="سوپرادمین" value="1" />
+			<member name="Sales" displayName="فروش" value="2" />
+			<member name="Accounting" displayName="حسابداری" value="3" />
+			<member name="Treasury" displayName="خزانه" value="4" />
+		</members>
+	</enum>
+</configuration>

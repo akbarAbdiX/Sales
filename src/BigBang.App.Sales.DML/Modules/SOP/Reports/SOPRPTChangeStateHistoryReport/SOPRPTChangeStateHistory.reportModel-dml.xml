@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/report">
+	<reportModel name="SOPRPTChangeStateHistoryReportService.GetChangeStateHistoryReport" displayName="گزارش اقدامات" moduleName="SOP" reportType="Static" isSearchable="false">
+
+		<propertiesCollection>
+			<properties>
+
+				<property name="DocumentNo" displayName="شماره سند">
+					<propertyType>
+						<int/>
+					</propertyType>
+				</property>
+
+				<property name="EntityTypeTitle" displayName="نوع اقدام">
+					<propertyType>
+						<string/>
+					</propertyType>
+				</property>
+
+				<property name="CreatedDate" displayName="تاریخ اقدام">
+					<propertyType>
+						<dateTime/>
+					</propertyType>
+				</property>
+
+				<property name="EntityStateTypeTitle" order="4" displayName="وضعیت جاری">
+					<propertyType>
+						<string/>
+					</propertyType>
+				</property>
+				<property name="UserName" displayName="کـاربـر">
+					<propertyType>
+						<string/>
+					</propertyType>
+				</property>
+			</properties>
+
+		</propertiesCollection>
+	</reportModel>
+</configuration>

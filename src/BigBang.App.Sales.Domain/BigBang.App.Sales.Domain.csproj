@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="BigBang.Metadata.Models" Version="4.0.0-alpha.3822" />
+    <PackageReference Include="BigBang.NHibernateLibrary" Version="4.0.0-alpha.3822" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NHibernate" Version="5.5.1" />
+    <PackageReference Include="BigBang.App.ERPSuiteCore.Domain" Version="0.1.0-stage.29" />
+    <PackageReference Include="BigBang.App.LocalAuthentication.Domain" Version="4.0.0-alpha.3822" />
+    <PackageReference Include="BigBang.App.ImportExport" Version="4.0.0-alpha.3822" />
+    <PackageReference Include="BigBang.Domain" Version="4.0.0-alpha.3822" />
+  </ItemGroup>
+</Project>

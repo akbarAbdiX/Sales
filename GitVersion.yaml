@@ -1,0 +1,15 @@
+branches:
+  main:
+    regex: ^master$
+    increment: Minor
+    mode: ContinuousDeployment
+  bbrelease:
+    regex: ^release\/
+    increment: Patch
+    mode: ContinuousDeployment
+  release:
+    regex: ^___Ignore\/
+  develop:
+    increment: None
+  feature:
+    mode: ContinuousDelivery

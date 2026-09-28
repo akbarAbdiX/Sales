@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+	<entityModel name="SALSOPDocumentItem" moduleName="SOP" displayName="اقلام سند">
+		<propertiesCollection>
+			<properties>
+				<primitive name="ID" order="1" isReadOnly="true" isVisible="false" />
+				<primitive name="Quantity" order="2"  displayName="مقدار" />
+				<primitive name="Amount" displayName="مبلغ" isReadOnly="true" order="3">
+					<formatType>
+						<currency />
+					</formatType>
+				</primitive>
+				<primitive name="UnitPrice" order="11" displayName="مبلغ"  isVisible="false">
+					<formatType>
+						<currency />
+					</formatType>
+				</primitive>
+				<primitive name="Discount" order="4" displayName="تخفیف" >
+					<formatType>
+						<currency />
+					</formatType>
+				</primitive>
+				<primitive name="AdditionalCharge" order="5"  displayName="هزینه اضافه">
+					<formatType>
+						<currency />
+					</formatType>
+				</primitive>
+				<primitive name="Tax" order="6" displayName="مالیات" >
+					<formatType>
+						<currency />
+					</formatType>
+				</primitive>
+				<primitive name="TotalPrice" order="7"  displayName="جمع کل">
+					<formatType>
+						<currency />
+					</formatType>
+				</primitive>
+				<primitive name="Description" order="8" displayName="شرح">
+					<editor>
+						<string multiline="true" maxLength="2000"/>
+					</editor>
+				</primitive>
+				<primitive name="PrintDescription" order="9" displayName="عنوان در چاپ">
+					<editor>
+						<string multiline="true" maxLength="2000"/>
+					</editor>
+				</primitive>
+				<reference name="Document" order="10" displayName=" سند فروش" />
+				<primitive name="ItemID" order="11" displayName="کالا خدمت" >
+					<virtualReference target="ERPSuiteCore.SuiteCoreProductDetail" />
+				</primitive>
+				<virtual name="ProductServiceCode" allowNull="true" order="13" displayName="شناسه کالا" isReadOnly="true" isSearchable="false">
+					<propertyType>
+						<string />
+					</propertyType>
+				</virtual>
+				<reference name="ProductAndServiceRate" order="12" displayName=" نرخ محصولات و خدمات "  />
+			</properties>
+			<layoutExpressions>
+				<filterField field="ProductAndServiceRate" bindTo="ItemID">
+					<businessContext>
+						<businessContextItem name="FilterProductAndServiceRate">
+							<value>Model.ItemID.Id</value>
+						</businessContextItem>
+						<businessContextItem name="FilterProductAndServiceRateDocumentDate">
+							<value>Model.Document.IssueDate</value>
+						</businessContextItem>
+						<businessContextItem name="FilterProductAndServiceRateDocumentType">
+							<value>Model.Document.DocumentType.ID</value>
+						</businessContextItem>
+					</businessContext>
+				</filterField>
+			</layoutExpressions>
+			<changeExpressions>
+				<changeExpression>
+					<properties>
+						<source name="Quantity"/>
+						<source name="ProductAndServiceRate"/>
+						<target name="Amount"/>
+						<target name="UnitPrice"/>
+					</properties>
+					<expression>
+						<![CDATA[createObject("Amount",decimalMul(Model.ProductAndServiceRate.BasePrice,Model.Quantity),"UnitPrice",Model.ProductAndServiceRate.BasePrice)]]>
+					</expression>
+				</changeExpression>
+				<changeExpression>
+					<expression>
+						<![CDATA[executeCommand("Sales","FindProductTotalAmount",createObject(
+															"unitPrice",Model.UnitPrice
+															,"quantity",Model.Quantity
+															,"id",Model.ID
+															,"documentId",Model.Document.ID
+															,"itemID",Model.ItemID))]]>
+					</expression>
+					<properties>
+						<source name="Quantity" />
+						<target name="Discount"/>
+						<target name="AdditionalCharge"/>
+						<target name="Tax"/>
+						<target name="TotalPrice"/>
+					</properties>
+				</changeExpression>
+				<changeExpression>
+					<properties>
+						<source name="ItemID"/>
+						<target name="UnitPrice" />
+						<target name="ProductAndServiceRate"/>
+					</properties>
+					<expression><![CDATA[executeCommand("Sales","FindProductUnitPrice",createObject("item",Model.ItemID,"document",Model.Document))]]></expression>
+				</changeExpression>
+				<changeExpression>
+					<properties>
+						<source name="ItemID"/>
+						<target name="ProductServiceCode"/>
+					</properties>
+					<expression><![CDATA[createObject("ProductServiceCode",Model.ItemID.ProductServiceCode)]]></expression>
+				</changeExpression>
+			</changeExpressions>
+		</propertiesCollection>
+		<formatting>
+			<property name="Document"/>
+			<constant value="-"/>
+			<property name="ItemID"/>
+			<constant	 value="-"/>
+			<property name="ProductAndServiceRate"/>
+		</formatting>
+	</entityModel>
+</configuration>

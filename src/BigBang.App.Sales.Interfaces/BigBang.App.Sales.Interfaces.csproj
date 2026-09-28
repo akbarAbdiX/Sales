@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="BigBang.Metadata.Models" Version="4.0.0-alpha.3822" />
+	</ItemGroup>
+ 
+	<ItemGroup>
+    <ProjectReference Include="..\BigBang.App.Sales.Domain\BigBang.App.Sales.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

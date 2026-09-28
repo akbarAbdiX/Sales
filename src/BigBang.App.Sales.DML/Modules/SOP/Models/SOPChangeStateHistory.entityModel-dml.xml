@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+	<entityModel name="SALSOPChangeStateHistory" moduleName="SOP" isReadOnly="true">
+		<propertiesCollection>
+			<properties>
+				<primitive name="Id" order="1" isReadOnly="true"  isVisible="false" />
+				<primitive name="EntityTypeId" order="2"  displayName="نوع اقدام">
+					<propertyType>
+						<enum name="SOPChangeStateHistoryEntityType" />
+					</propertyType>
+				</primitive>
+				<primitive name="CreatedDate" order="3" displayName="تاریخ اقدام" />
+				
+				
+
+				<primitive name="EntityStateTypeId" order="4" displayName="وضعیت جاری"  >
+					<propertyType>
+						<enum name="SOPChangeStateHistoryEntityStateType" />
+					</propertyType>
+				</primitive>
+				<primitive name="UserId" displayName="شناسه کاربر" order="5"></primitive>
+				
+				<primitive name="EntityTypeTitle" order="6" isVisible="false"  />
+				<primitive name="EntityId" order="7" displayName="شناسه"  isVisible="false"/>
+				<primitive name="EntityStateTypeTitle" order="8"  isVisible="false"/>
+				<primitive name="IsCurrent" order="9"  displayName="آخرین وضعیت در هر عملیات"  isVisible="false"/>
+				<primitive name="Comment" order="10"  displayName="دلیل رد"  isVisible="false"/>
+			</properties>
+		</propertiesCollection>
+	</entityModel>
+</configuration>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/form">
+  <form name="105" displayName= "انواع فیلد قرارداد" moduleName="SOP">
+	  <panel >
+		  <modelComponent name="ContractFieldType" model="SALSOPContractFieldType"  title="انواع فیلد قرارداد"  viewType="Grid" >
+			  <modelSettings displayName="انواع فیلد قرارداد"></modelSettings>
+		  </modelComponent>
+		  
+	  </panel>
+	</form>
+</configuration>

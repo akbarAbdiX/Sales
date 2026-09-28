@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPContractAdditionalInfo" table="[tblSOPContractAdditionalInfo]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="ID" type="Int32">
+      <column name="ID" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <property name="Description" type="String">
+      <column name="Description" not-null="false" sql-type="nvarchar" length="2147483647" />
+    </property>
+    <many-to-one name="ContractFieldType" class="BigBang.App.Sales.Domain.SALSOPContractFieldType,BigBang.App.Sales.Domain">
+      <column name="ContractFieldTypeID" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="Document" class="BigBang.App.Sales.Domain.SALSOPDocument,BigBang.App.Sales.Domain">
+      <column name="DocumentID" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

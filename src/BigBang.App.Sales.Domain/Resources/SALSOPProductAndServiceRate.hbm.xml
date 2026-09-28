@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPProductAndServiceRate" table="[tblSOPProductAndServiceRate]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="ID" type="Int32">
+      <column name="ID" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <bag cascade="save-update" name="SOPDocumentItems" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="ProductAndServiceRateID" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPDocumentItem,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <property name="BasePrice" type="Decimal">
+      <column name="BasePrice" not-null="true" precision="18" scale="0" sql-type="decimal" />
+    </property>
+    <property name="StartDate" type="DateTime">
+      <column name="StartDate" not-null="true" sql-type="datetime" />
+    </property>
+    <property name="EndDate" type="DateTime">
+      <column name="EndDate" not-null="false" sql-type="datetime" />
+    </property>
+    <many-to-one name="ItemID" class="BigBang.App.ERPSuiteCore.Domain.SuiteCoreProductDetail,BigBang.App.ERPSuiteCore.Domain">
+      <column name="ItemID" not-null="true" sql-type="int" />
+    </many-to-one>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

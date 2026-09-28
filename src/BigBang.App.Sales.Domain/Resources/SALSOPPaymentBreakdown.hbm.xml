@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPPaymentBreakdown" table="[tblSOPPaymentBreakdown]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="Id" type="Int32">
+      <column name="Id" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <property name="PhaseName" type="String">
+      <column name="PhaseName" not-null="true" sql-type="nvarchar" length="200" />
+    </property>
+    <property name="Title" type="String">
+      <column name="Title" not-null="true" sql-type="nvarchar" default="('')" length="300" />
+    </property>
+    <property name="Amount" type="Decimal">
+      <column name="Amount" not-null="true" precision="18" scale="2" sql-type="decimal" default="((0))" />
+    </property>
+    <property name="DueDate" type="DateTime">
+      <column name="DueDate" not-null="true" sql-type="date" default="(getdate())" />
+    </property>
+    <many-to-one name="Document" class="BigBang.App.Sales.Domain.SALSOPDocument,BigBang.App.Sales.Domain">
+      <column name="DocumentId" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

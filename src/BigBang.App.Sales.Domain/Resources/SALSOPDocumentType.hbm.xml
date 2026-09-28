@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPDocumentType" table="[tblSOPDocumentType]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="ID" type="Int32">
+      <column name="ID" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <bag cascade="save-update" name="SOPDocuments" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="DocumentTypeID" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPDocument,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <bag cascade="save-update" name="SOPDocumentFlows" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="DocumentTypeID" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPDocumentFlow,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <property name="Code" type="Int32">
+      <column name="Code" not-null="true" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="Title" type="String">
+      <column name="Title" not-null="true" sql-type="nvarchar" length="100" />
+    </property>
+    <property name="Name" type="String">
+      <column name="Name" not-null="true" sql-type="varchar" length="100" />
+    </property>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

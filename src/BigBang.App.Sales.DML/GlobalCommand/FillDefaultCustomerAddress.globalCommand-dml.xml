@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/globalCommand">
+	<globalCommand>
+		<csharp name="FindDefaultCustomerAddress" displayName="" serviceName="SOPFillDefaultCustomerAddress">
+			<parametersCollection>
+				<parameters>
+					<parameter name="CustomerID">
+						<parameterType>
+							<model sourceModel="ERPSuiteCore.SuiteCoreParty"/>
+						</parameterType>
+					</parameter>
+				</parameters>
+			</parametersCollection>
+		</csharp>
+	</globalCommand>
+</configuration>

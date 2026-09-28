@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+  <entityModel name="SALSOPDocumentType" displayName="انواع اسناد فروش" moduleName="SOP" isReadOnly="true">
+    <propertiesCollection>
+      <properties>
+        <primitive name="ID" order="1" isReadOnly="true" displayName="شناسه" isVisible="false" />
+        <primitive name="Code" order="2" displayName="کد" />
+        <primitive name="Title" order="3"  displayName="عنوان"/>
+        <primitive name="Name" order="4" displayName="نام" />
+      </properties>
+    </propertiesCollection>
+	  <formatting>
+		  <property name="Title"/>
+	  </formatting>
+  </entityModel>
+</configuration>

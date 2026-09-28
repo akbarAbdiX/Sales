@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel/table">
+  <table schemaOwner="dbo" name="tblSOPChangeStateHistory" primaryColumnName="Id">
+    <columns>
+      <column Name="Id" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="true" netType="System.Int32" allowNull="false" />
+      <column Name="EntityTypeId" typeName="tinyint" scale="0" precision="3" isComputed="false" isAutoNumber="false" netType="System.Byte" allowNull="false" />
+      <column Name="EntityTypeTitle" typeName="nvarchar" isComputed="false" isAutoNumber="false" length="200" netType="System.String" allowNull="false" />
+      <column Name="EntityId" typeName="bigint" scale="0" precision="19" isComputed="false" isAutoNumber="false" netType="System.Int64" allowNull="false" />
+      <column Name="EntityStateTypeId" typeName="tinyint" scale="0" precision="3" isComputed="false" isAutoNumber="false" netType="System.Byte" allowNull="false" />
+      <column Name="EntityStateTypeTitle" typeName="nvarchar" isComputed="false" isAutoNumber="false" length="200" netType="System.String" allowNull="false" />
+      <column Name="UserId" typeName="bigint" scale="0" precision="19" isComputed="false" isAutoNumber="false" netType="System.Int64" allowNull="false" />
+      <column Name="IsCurrent" typeName="bit" isComputed="false" isAutoNumber="false" netType="System.Boolean" allowNull="false" />
+      <column Name="CreatedDate" typeName="datetime" isComputed="false" isAutoNumber="false" netType="System.DateTime" allowNull="false" defaultValue="(getdate())" />
+      <column Name="Comment" typeName="nvarchar" isComputed="false" isAutoNumber="false" length="-1" netType="System.String" allowNull="true" />
+    </columns>
+  </table>
+</configuration>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPTaxExemptionType" table="[tblSOPTaxExemptionType]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="ID" type="Int32">
+      <column name="ID" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <bag cascade="save-update" name="SOPProductDetailTaxExemptions" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="TaxExemptionTypeId" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPProductDetailTaxExemption,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <property name="Code" type="Int32">
+      <column name="Code" not-null="true" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="Description" type="String">
+      <column name="Description" not-null="true" sql-type="nvarchar" length="2147483647" />
+    </property>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

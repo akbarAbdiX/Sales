@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+  <entityModel name="SALSOPPaymentBreakdown" displayName="شکست پرداخت قرارداد" moduleName="SOP">
+    <propertiesCollection>
+      <properties>
+        <primitive name="Id" order="1" isReadOnly="true"  isVisible="false"/>
+        <primitive name="PhaseName" order="2" displayName="مرحله" />
+        <primitive name="Title" order="3" displayName="عنوان" />
+        <primitive name="DueDate" order="4" displayName="تاریخ" />
+        <primitive name="Amount" order="5" displayName="مبلغ" >
+			<formatType>
+				<currency />
+			</formatType>
+		</primitive>
+        <reference name="Document" order="3"  isVisible="false"/>
+      </properties>
+    </propertiesCollection>
+  </entityModel>
+</configuration>

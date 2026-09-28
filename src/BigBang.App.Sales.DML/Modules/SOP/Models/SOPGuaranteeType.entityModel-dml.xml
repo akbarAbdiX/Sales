@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+  <entityModel name="SALSOPGuaranteeType" displayName="ضمانت نامه قرارداد" moduleName="SOP" isReadOnly="true">
+    <propertiesCollection>
+      <properties>
+        <primitive name="Id" order="1" isReadOnly="true" isVisible="false" />
+        <primitive name="Code" order="2" displayName="کد" />
+        <primitive name="Description" order="3"  displayName="شرح"/>
+      </properties>
+    </propertiesCollection>
+	  <formatting>
+		  <property name="Code"/>
+		  <constant value="-"/>
+		  <property name="Description"/>
+	  </formatting>
+  </entityModel>
+</configuration>

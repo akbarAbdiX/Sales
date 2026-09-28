@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+	<entityModel name="SALSOPProductAndServiceRate" displayName="نرخ محصولات و خدمات" moduleName="SOP">
+		<propertiesCollection>
+			<properties>
+				<primitive name="ID" order="1" isReadOnly="true" isVisible="false" />
+				<primitive name="BasePrice" order="4"  displayName="قیمت پایه">
+					<formatType>
+						<currency/>
+					</formatType>
+				</primitive>
+				<primitive name="StartDate" order="5" displayName="از تاریخ" />
+				<primitive name="EndDate" order="6" displayName="تا تاریخ" />
+				<primitive name="ItemID" order="2"  displayName="کالا یا خدمت" >
+					<virtualReference target="ERPSuiteCore.SuiteCoreProductDetail" />
+					<editor>
+						<model newItem="Hide" openForm="Hide" showLocateForm="false"/>
+					</editor>
+				</primitive>
+				<virtual name="ProductServiceCode" allowNull="true" order="3" displayName="شناسه کالا" isReadOnly="true" isSearchable="false">
+					<propertyType>
+						<string />
+					</propertyType>
+				</virtual>
+			</properties>
+			<changeExpressions>
+				<changeExpression>
+					<properties>
+						<source name="ItemID"/>
+						<target name="ProductServiceCode"/>
+					</properties>
+					<expression><![CDATA[createObject("ProductServiceCode",Model.ItemID.ProductServiceCode)]]></expression>
+				</changeExpression>
+			</changeExpressions>
+		</propertiesCollection>
+		<formatting>
+			<property name="BasePrice"/>
+		</formatting>
+	</entityModel>
+</configuration>

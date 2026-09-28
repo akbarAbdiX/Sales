@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/menu">
+	<menu>
+		<modules>
+			<module title="مدیریت فروش ">
+				<groups>
+					<group title="فروش">
+						<items>
+							<item title="پیش فاکتور">
+								<action type="Form" value="101"></action>
+							</item>
+							<item title="سفارش">
+								<action type="Form" value="102"></action>
+							</item>
+							<item title="قرارداد">
+								<action type="Form" value="103"></action>
+							</item>
+							<item title="درخواست صدور فاکتور">
+								<action type="Form" value="107"></action>
+							</item>
+							<item title="پیشنهاد قیمت">
+								<action type="Form" value="108"></action>
+							</item>
+							<item title="فاکتور">
+								<action type="Form" value="104"></action>
+							</item>
+							<item title="گزارش های فروش">
+								<items>
+									<item title="گزارش پیش فاکتورهای باز">
+										<action type="Report" value="GetDocuments"/>
+									</item>
+									<item title="گزارش  فاکتورهای صادر شده">
+										<action type="Report" value="GetIssuedInvoiceDocuments"/>
+									</item>
+									<item title="گزارش تاریخچه اقدامات">
+										<action type="Report" value="GetChangeStateHistoryReport"></action>
+									</item>
+								</items>
+							</item>
+						</items>
+					</group>
+					<group title="اطلاعات پایه فروش">
+						<items>
+							<item title="نرخ محصولات و خدمات">
+								<action type="Model" value="SALSOPProductAndServiceRate"></action>
+							</item>
+
+							<item title="انواع معافیت مالیاتی">
+								<action type="Model" value="SALSOPTaxExemptionType"></action>
+							</item>
+							<item title="سهم ارزش افزوده">
+								<action type="Model" value="SALSOPPaymentVatShare"></action>
+							</item>
+							<item title="تعدیلات">
+								<action type="Form" value="100"></action>
+							</item>
+							<item title="انواع فیلد قرارداد ">
+								<action type="Form" value="105"></action>
+							</item>
+							<item title="گردش کار فروش">
+								<action type="Model" value="SALSOPDocumentFlow"></action>
+							</item>
+							<item title="انواع الحاقیه قرارداد">
+								<action type="Model" value="SALSOPAddendumType"></action>
+							</item>
+							<item title="معافیت مالیاتی محصولات">
+								<action type="Model" value="SALSOPProductDetailTaxExemption"></action>
+							</item>
+							<item title="انواع پرداخت">
+								<action type="Model" value="SALSOPPaymentTermsType"></action>
+							</item>
+							<item title="موعد پرداخت">
+								<action type="Model" value="SALSOPDueType"></action>
+							</item>
+							<item title="مراحل قرارداد">
+								<action type="Model" value="SALSOPSubContractStage"></action>
+							</item>
+							<item title=" قرارداد">
+								<action type="Model" value="SALSOPChangeStateHistory"></action>
+							</item>
+							<item title="اطلاعات فروشنده">
+								<action type="Form" value="106"></action>
+							</item>
+						</items>
+					</group>
+				</groups>
+			</module>
+		</modules>
+	</menu>
+</configuration>

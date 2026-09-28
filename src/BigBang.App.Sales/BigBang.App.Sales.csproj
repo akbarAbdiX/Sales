@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="BigBang.App.Feedback" Version="4.0.0-alpha.3822" />
+		<PackageReference Include="BigBang.App.LocalAuthentication" Version="4.0.0-alpha.3822" />
+		<PackageReference Include="BigBang.App.PersonalInformation" Version="4.0.0-alpha.3822" />
+		<PackageReference Include="BigBang.App.RoleBaseAuthorization" Version="4.0.0-alpha.3822" />
+		<PackageReference Include="BigBang.App.RoleBaseAuthorization.Metadata.Models" Version="4.0.0-alpha.3822" />
+		<PackageReference Include="BigBang.ServiceAPI" Version="4.0.0-alpha.3822" />
+		<PackageReference Include="LinqKit.Core" Version="1.2.8" />
+		<PackageReference Include="BigBang.App.LocalAuthentication.Domain" Version="4.0.0-alpha.3822" />
+		<ProjectReference Include="..\BigBang.App.Sales.DML\BigBang.App.Sales.DML.csproj" />
+		<ProjectReference Include="..\BigBang.App.Sales.Domain\BigBang.App.Sales.Domain.csproj" />
+		<ProjectReference Include="..\BigBang.App.Sales.ERPSuiteCore.Extended\BigBang.App.Sales.ERPSuiteCore.Extended.csproj" />
+		<ProjectReference Include="..\BigBang.App.Sales.Interfaces\BigBang.App.Sales.Interfaces.csproj" />
+		<ProjectReference Include="..\BigBang.App.Sales.Migrations\BigBang.App.Sales.Migrations.csproj" />
+	</ItemGroup>
+</Project>

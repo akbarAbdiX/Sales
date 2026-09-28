@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+  <entityModel name="SALSOPAdjustment" moduleName="SOP"  displayName="تعدیلات">
+    <propertiesCollection>
+      <properties>
+        <primitive name="ID" order="1" isReadOnly="true"  displayName="شناسه" isVisible="false"/>
+        <primitive name="Code" order="2"  displayName="کد"/>
+		  <primitive name="Title" order="3" displayName="عنوان"/>
+        <primitive name="Rate" order="5" displayName="نرخ درصد" />
+		  <primitive name="Amount" order="6"  displayName="نرخ مبلغ">
+			  <formatType>
+				  <currency />
+			  </formatType>
+		  </primitive>
+        <primitive name="IsDefault" order="7"  displayName="پیش فرض"/>
+        <primitive name="IsAppliedTax" order="8"  displayName="مالیات پذیر" isVisible="false"/> 
+        <primitive name="FromDate" order="9"  displayName="از تاریخ"/>
+        <primitive name="ToDate" order="10"  displayName="تا تاریخ"/>
+        <reference name="AdjustmentType" order="4"  displayName="نوع نعدیل" autoLoad="true"/>
+      </properties>
+    </propertiesCollection>
+	  <formatting>
+		  <property name="Title"/>
+	  </formatting>
+  </entityModel>
+</configuration>

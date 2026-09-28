@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/form">
+	<form name="104" displayName= "فاکتور" moduleName="SOP">
+		<splitter orientation="Vertical">
+			<panel1 size="40%" >
+				<modelComponent name="Document" model="SALSOPDocument"  title="فاکتور"  viewType="Grid" >
+					<toolBar>
+						<items>
+							<group>
+								<items>
+									<search/>
+								</items>
+							</group>
+							<group>
+								<items>
+									<refresh/>
+								</items>
+							</group>
+							<group>
+								<items>
+									<subMenu>
+										<icon>
+											<font name="far fa-bolt" color="#ff9800"/>
+										</icon>
+										<items>
+											<customCommand command="CalculateAdjustment" title="تعدیل"/>
+											<customCommand command="Transition" title="انتقال اطلاعات به مرحله بعد"/>
+											<customCommand command="SetDocumentToConfirmed" title="ثبت نهایی"/>
+											<customCommand command="SetDocumentToDiscarded" title="ابطال"/>
+										</items>
+									</subMenu>
+								</items>
+							</group>
+							<group>
+								<items>
+									<addSubMenu/>
+									<delete/>
+								</items>
+							</group>
+							<group>
+								<items>
+									<attachment/>
+								</items>
+							</group>
+							<group>
+								<items>
+									<transitionsSubMenu>
+										<enable>
+
+										</enable>
+									</transitionsSubMenu>
+								</items>
+							</group>
+							<group>
+								<items>
+									<subMenu>
+										<icon>
+											<font name="fas fa-print"/>
+										</icon>
+										<items>
+											<printTemplate printTemplate="SALSOPInvoicetPrint"/>
+										</items>
+									</subMenu>
+								</items>
+							</group>
+							<group>
+								<items>
+									<help/>
+								</items>
+							</group>
+						</items>
+					</toolBar>
+					<modelSettings displayName="فاکتور" >
+						<defaultSorts>
+							<defaultSort property="No" sortType="Desc"/>
+							<defaultSort  property="IssueDate" sortType="Desc"/>
+						</defaultSorts>
+						<properties>
+							<property name="No" displayName="شماره فاکتور" order="1"/>
+							<property name="IssueDate" displayName="تاریخ و زمان صدور" order="2">
+								<editor>
+									<dateTime/>
+								</editor>
+							</property>
+							<property name="CustomerID" displayName="مشتری" order="4"/>
+							<property name="DocumentType" displayName="نوع سند" order="6" isVisible="false"/>
+							<property name="EndDate" displayName="تاریخ اعتبار" isVisible="false"/>
+							<property name="Amount" displayName="مبلغ" order="8" isReadOnly="true" />
+							<property name="DiscountAmount" displayName="تخفیف" order="9" isReadOnly="true" />
+							<property name="AdditionalChargesAmount" displayName="هزینه اضافه" order="10" isReadOnly="true" />
+							<property name="TaxAmount" displayName="مالیات" order="11" isReadOnly="true"/>
+							<property name="TotalAmount" displayName="مبلغ کل" order="12" isReadOnly="true" />
+							<property name="Description" displayName="توضیحات" order="13"/>
+							<property name="StartDate"  isVisible="false"/>
+							<property name="UniqueTaxIdentifier" displayName="شماره منحصر به فرد مالیاتی" isVisible="true"/>
+							<property name="ProductType" order="14" displayName="نوع کالا"/>
+							<property name="PaymentTermsType" order="13"  displayName="روش پرداخت" isVisible="true"/>
+							<property name="CustomerAddress" order="16" displayName="آدرس خریدار"  isVisible="true"/>
+							<property name="PaymentTermAmount" order="14" displayName="مبلغ دریافتی" isVisible="true"/>
+							<property name="Document" displayName="سند مبدا"  order="3">
+								<editor>
+									<model newItem="Hide" openForm="Hide" showLocateForm="false"/>
+								</editor>
+							</property>
+						</properties>
+						<layoutExpressions>
+							<filterField field="Document" bindTo="CustomerID">
+								<businessContext>
+									<businessContextItem name="FilterDocumentType">
+										<value><![CDATA[Model.DocumentType.ID]]></value>
+									</businessContextItem>
+									<businessContextItem name="FilterCustomerId" >
+										<value><![CDATA[Model.CustomerID.Id]]></value>
+									</businessContextItem>
+									<businessContextItem name="FilterDocumentId" >
+										<value>true</value>
+									</businessContextItem>
+								</businessContext>
+							</filterField>
+							<filterField field="CustomerAddress" bindTo="CustomerID">
+								<businessContext>
+									<businessContextItem name="FilterCustomerAddress">
+										<value><![CDATA[Model.CustomerID.Id]]></value>
+									</businessContextItem>
+								</businessContext>
+							</filterField>
+						</layoutExpressions>
+					</modelSettings>
+					<businessContext>
+						<businessContextItem name="DocumentTypeInvoice">
+							<value>true</value>
+						</businessContextItem>
+						<businessContextItem name="CheckAccessToInvoice" >
+							<value>true</value>
+						</businessContextItem>
+					</businessContext>
+				</modelComponent>
+			</panel1>
+			<panel2 size="60%">
+				<splitter orientation="Horizontal">
+					<panel1 size="50%">
+						<tab>
+							<items>
+								<item title="اقلام فاکتور">
+									<associateModelComponent owner="Document" associateProperty="SOPDocumentItems" name="DocumentItem" title="اقلام فاکتور" viewType="Grid">
+										<modelSettings displayName="اقلام فاکتور" >
+											<properties>
+												<property name="ItemID"  displayName="کالا /خدمت"  order="1"/>
+												<property name="ProductServiceCode" displayName="شناسه کالا" order="2" isReadOnly="true"/>
+												<property name="ProductAndServiceRate"  displayName="نرخ کالا/خدمت" order="3" />
+												<property name="Quantity"  displayName="مقدار" order="4" />
+												<property name="Amount"  displayName="مبلغ" order="5"  isReadOnly="true"/>
+												<property name="Discount"  displayName="تخفیف" order="6"  isReadOnly="true"/>
+												<property name="AdditionalCharge"  displayName="هزینه اضافه" order="7"  isReadOnly="true"/>
+												<property name="Tax"  displayName="مالیات" order="8"  isReadOnly="true"/>
+												<property name="TotalPrice"  displayName="جمع کل" order="9"  isReadOnly="true"/>
+												<property name="Description"  displayName="شرح" order="10" />
+												<property name="Document" isVisible="false"/>
+												<property name="UnitPrice" isVisible="false"/>
+											</properties>
+										</modelSettings>
+										<businessContext>
+											<businessContextItem name="LoadProductServiceCode">
+												<value>true</value>
+											</businessContextItem>
+											<businessContextItem name="CheckAccessToInvoiceItems" >
+												<value>true</value>
+											</businessContextItem>
+										</businessContext>
+									</associateModelComponent>
+								</item>
+							</items>
+						</tab>
+					</panel1>
+					<panel2 size="50%">
+						<tab>
+							<items>
+								<item title="تعدیلات">
+									<associateModelComponent owner="DocumentItem" associateProperty="SOPDocumentAdjustments" name="DocumentAdjustment" title="تعدیلات " viewType="Grid">
+										<modelSettings >
+											<properties>
+												<property name="Adjustment" displayName="نوع تعدیل"   order="1"/>
+												<property name="AdjustmentAmount" displayName="مبلغ"   order="2"/>
+												<property name="ParameterAmount" isVisible="false"></property>
+												<property name="DocumentItem" isVisible="false"></property>
+											</properties>
+										</modelSettings>
+										<businessContext>
+											<businessContextItem name="CheckAccessToInvoiceAdjustment" >
+												<value>true</value>
+											</businessContextItem>
+										</businessContext>
+									</associateModelComponent>
+								</item>
+							</items>
+						</tab>
+					</panel2>
+				</splitter>
+			</panel2>
+		</splitter>
+	</form>
+</configuration>

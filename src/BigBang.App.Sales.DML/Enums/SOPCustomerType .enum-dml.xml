@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/enum">
+	<enum name="SOPCustomerType">
+		<members>
+			<member name="Individual" displayName="حقیقی" value="0" />
+			<member name="Corporate" displayName="حقوقی" value="1" />
+		</members>
+	</enum>
+</configuration>

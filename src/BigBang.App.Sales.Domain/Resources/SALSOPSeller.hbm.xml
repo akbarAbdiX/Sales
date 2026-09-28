@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPSeller" table="[tblSOPSeller]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="Id" type="Int32">
+      <column name="Id" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <property name="Name" type="String">
+      <column name="Name" not-null="true" sql-type="nvarchar" length="200" />
+    </property>
+    <property name="EconomicCode" type="Int32">
+      <column name="EconomicCode" not-null="false" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="BranchCode" type="Int32">
+      <column name="BranchCode" not-null="false" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="Address" type="String">
+      <column name="Address" not-null="false" sql-type="nvarchar" length="500" />
+    </property>
+    <property name="PostalCode" type="Int32">
+      <column name="PostalCode" not-null="false" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="PhoneNumber" type="Int32">
+      <column name="PhoneNumber" not-null="false" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="FaxNumber" type="Int32">
+      <column name="FaxNumber" not-null="false" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="RegistrationNumber" type="Int32">
+      <column name="RegistrationNumber" not-null="false" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="IsDefault" type="Boolean">
+      <column name="IsDefault" not-null="true" sql-type="bit" />
+    </property>
+    <bag cascade="save-update" name="SOPDocuments" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="SellerID" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPDocument,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/application/dbStoredProcedure">
+  <dbStoredProcedure>
+    <storedProcedures>
+      <storedProcedure name="sp_GetUninvoicedProformaInvoices" commandName="sp_GetUninvoicedProformaInvoices">
+        <arguments>
+          <argument Name="@FromDate" typeName="datetime" isUdt="false" isOutput="false" allowNull="true" netType="System.DateTime" isSystemDefined="false" />
+          <argument Name="@ToDate" typeName="datetime" isUdt="false" isOutput="false" allowNull="true" netType="System.DateTime" isSystemDefined="false" />
+        </arguments>
+      </storedProcedure>
+    </storedProcedures>
+  </dbStoredProcedure>
+</configuration>

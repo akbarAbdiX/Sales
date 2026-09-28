@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPDocumentItem" table="[tblSOPDocumentItem]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="ID" type="Int32">
+      <column name="ID" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <bag cascade="save-update" name="SOPDocumentAdjustments" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="DocumentItemID" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPDocumentAdjustment,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <property name="Amount" type="Decimal">
+      <column name="Amount" not-null="false" precision="18" scale="0" sql-type="decimal" />
+    </property>
+    <property name="Quantity" type="Int32">
+      <column name="Quantity" not-null="true" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="UnitPrice" type="Decimal">
+      <column name="UnitPrice" not-null="true" precision="18" scale="0" sql-type="decimal" default="((0))" />
+    </property>
+    <property name="Discount" type="Decimal">
+      <column name="Discount" not-null="true" precision="18" scale="0" sql-type="decimal" default="((0))" />
+    </property>
+    <property name="AdditionalCharge" type="Decimal">
+      <column name="AdditionalCharge" not-null="true" precision="18" scale="0" sql-type="decimal" default="((0))" />
+    </property>
+    <property name="Tax" type="Decimal">
+      <column name="Tax" not-null="true" precision="18" scale="0" sql-type="decimal" default="((0))" />
+    </property>
+    <property name="TotalPrice" type="Decimal">
+      <column name="TotalPrice" not-null="true" precision="18" scale="0" sql-type="decimal" default="((0))" />
+    </property>
+    <property name="Description" type="String">
+      <column name="Description" not-null="false" sql-type="nvarchar" length="2147483647" />
+    </property>
+    <property name="PrintDescription" type="String">
+      <column name="PrintDescription" not-null="false" sql-type="nvarchar" length="2147483647" />
+    </property>
+    <many-to-one name="Document" class="BigBang.App.Sales.Domain.SALSOPDocument,BigBang.App.Sales.Domain">
+      <column name="DocumentID" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="ProductAndServiceRate" class="BigBang.App.Sales.Domain.SALSOPProductAndServiceRate,BigBang.App.Sales.Domain">
+      <column name="ProductAndServiceRateID" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="ItemID" class="BigBang.App.ERPSuiteCore.Domain.SuiteCoreProductDetail,BigBang.App.ERPSuiteCore.Domain">
+      <column name="ItemID" not-null="true" sql-type="int" />
+    </many-to-one>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

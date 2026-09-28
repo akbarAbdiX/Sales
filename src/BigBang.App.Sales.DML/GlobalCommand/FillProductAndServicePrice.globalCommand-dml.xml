@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/globalCommand">
+	<globalCommand>
+		<csharp name="FindProductUnitPrice" displayName="" serviceName="SOPFillProductAndServicePrice">
+			<parametersCollection>
+				<parameters>
+					<parameter name="item">
+						<parameterType>
+							<model sourceModel="ERPSuiteCore.SuiteCoreProductDetail"/>
+						</parameterType>
+					</parameter>
+					<parameter name="document">
+						<parameterType>
+							<model sourceModel="SALSOPDocument"/>
+						</parameterType>
+					</parameter>
+				</parameters>
+			</parametersCollection>
+		</csharp>
+	</globalCommand>
+</configuration>

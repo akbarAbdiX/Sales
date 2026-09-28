@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPAdjustmentSign" table="[tblSOPAdjustmentSign]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="ID" type="Int32">
+      <column name="ID" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <property name="Value" type="Int16">
+      <column name="Value" not-null="true" precision="5" scale="0" sql-type="smallint" />
+    </property>
+    <property name="Name" type="String">
+      <column name="Name" not-null="true" sql-type="varchar" length="100" />
+    </property>
+    <property name="Title" type="String">
+      <column name="Title" not-null="true" sql-type="nvarchar" length="100" />
+    </property>
+    <bag cascade="save-update" name="SOPAdjustmentTypes" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="AdjustmentSignID" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPAdjustmentType,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel/table">
+  <table schemaOwner="dbo" name="tblSOPDocument" primaryColumnName="ID">
+    <columns>
+      <column Name="ID" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="true" netType="System.Int32" allowNull="false" />
+      <column Name="No" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="false" />
+      <column Name="IssueDate" typeName="datetime" isComputed="false" isAutoNumber="false" netType="System.DateTime" allowNull="false" />
+      <column Name="CustomerID" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="false" />
+      <column Name="StartDate" typeName="datetime" isComputed="false" isAutoNumber="false" netType="System.DateTime" allowNull="true" />
+      <column Name="EndDate" typeName="datetime" isComputed="false" isAutoNumber="false" netType="System.DateTime" allowNull="true" />
+      <column Name="Amount" typeName="decimal" scale="0" precision="18" isComputed="false" isAutoNumber="false" netType="System.Decimal" allowNull="false" defaultValue="((0))" />
+      <column Name="DiscountAmount" typeName="decimal" scale="0" precision="18" isComputed="false" isAutoNumber="false" netType="System.Decimal" allowNull="false" defaultValue="((0))" />
+      <column Name="AdditionalChargesAmount" typeName="decimal" scale="0" precision="18" isComputed="false" isAutoNumber="false" netType="System.Decimal" allowNull="false" defaultValue="((0))" />
+      <column Name="TaxAmount" typeName="decimal" scale="0" precision="18" isComputed="false" isAutoNumber="false" netType="System.Decimal" allowNull="false" defaultValue="((0))" />
+      <column Name="TotalAmount" typeName="decimal" scale="0" precision="18" isComputed="false" isAutoNumber="false" netType="System.Decimal" allowNull="false" defaultValue="((0))" />
+      <column Name="Description" typeName="nvarchar" isComputed="false" isAutoNumber="false" length="-1" netType="System.String" allowNull="true" />
+      <column Name="StateID" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="true" />
+      <column Name="UniqueTaxIdentifier" typeName="nvarchar" isComputed="false" isAutoNumber="false" length="20" netType="System.String" allowNull="true" />
+      <column Name="ContractNumber" typeName="nvarchar" isComputed="false" isAutoNumber="false" length="20" netType="System.String" allowNull="true" />
+      <column Name="RejectionReason" typeName="nvarchar" isComputed="false" isAutoNumber="false" length="500" netType="System.String" allowNull="true" />
+      <column Name="Color" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="true" />
+      <column Name="PaymentTermsType" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="true" />
+      <column Name="PaymentTermAmount" typeName="bigint" scale="0" precision="19" isComputed="false" isAutoNumber="false" netType="System.Int64" allowNull="true" />
+      <column Name="CustomerAddress" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="true" />
+      <column Name="DocumentID" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="true" />
+      <column Name="DocumentTypeID" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="false" />
+      <column Name="ProductTypeId" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="true" />
+      <column Name="SellerID" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="true" />
+    </columns>
+    <relations>
+      <relation targetTable="tblSOPDocument" sourceColumn="DocumentID" deleteRule="NONE" />
+      <relation targetTable="tblSOPDocumentType" sourceColumn="DocumentTypeID" deleteRule="NONE" />
+      <relation targetTable="tblSOPProductType" sourceColumn="ProductTypeId" deleteRule="NONE" />
+      <relation targetTable="tblSOPSeller" sourceColumn="SellerID" deleteRule="NONE" />
+    </relations>
+  </table>
+</configuration>

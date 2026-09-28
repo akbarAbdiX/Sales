@@ -1,0 +1,5 @@
+IF (NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'tblSOPChangeStateHistory' AND COLUMN_NAME = 'Comment'))
+BEGIN
+    ALTER TABLE dbo.tblSOPChangeStateHistory
+      ADD [Comment] nvarchar(max) NULL
+END

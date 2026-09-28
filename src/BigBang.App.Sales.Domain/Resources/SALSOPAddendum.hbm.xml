@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPAddendum" table="[tblSOPAddendum]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="ID" type="Int32">
+      <column name="ID" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <property name="AmendmentDate" type="DateTime">
+      <column name="AmendmentDate" not-null="true" sql-type="datetime" />
+    </property>
+    <property name="Description" type="String">
+      <column name="Description" not-null="false" sql-type="nvarchar" length="2147483647" />
+    </property>
+    <property name="Amount" type="Decimal">
+      <column name="Amount" not-null="false" precision="18" scale="0" sql-type="decimal" />
+    </property>
+    <property name="Notes" type="String">
+      <column name="Notes" not-null="false" sql-type="nvarchar" length="2147483647" />
+    </property>
+    <property name="EndDate" type="DateTime">
+      <column name="EndDate" not-null="false" sql-type="datetime" />
+    </property>
+    <many-to-one name="AddendumType" class="BigBang.App.Sales.Domain.SALSOPAddendumType,BigBang.App.Sales.Domain">
+      <column name="AddendumTypeID" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="Document" class="BigBang.App.Sales.Domain.SALSOPDocument,BigBang.App.Sales.Domain">
+      <column name="DocumentID" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

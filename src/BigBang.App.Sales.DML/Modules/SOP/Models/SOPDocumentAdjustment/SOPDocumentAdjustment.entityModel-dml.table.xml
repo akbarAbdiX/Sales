@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel/table">
+  <table schemaOwner="dbo" name="tblSOPDocumentAdjustment" primaryColumnName="ID">
+    <columns>
+      <column Name="ID" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="true" netType="System.Int32" allowNull="false" />
+      <column Name="AdjustmentAmount" typeName="decimal" scale="0" precision="18" isComputed="false" isAutoNumber="false" netType="System.Decimal" allowNull="false" defaultValue="((0))" />
+      <column Name="ParameterAmount" typeName="decimal" scale="0" precision="18" isComputed="false" isAutoNumber="false" netType="System.Decimal" allowNull="false" defaultValue="((0))" />
+      <column Name="AdjustmentID" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="false" />
+      <column Name="DocumentItemID" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="false" />
+    </columns>
+    <relations>
+      <relation targetTable="tblSOPAdjustment" sourceColumn="AdjustmentID" deleteRule="NONE" />
+      <relation targetTable="tblSOPDocumentItem" sourceColumn="DocumentItemID" deleteRule="NONE" />
+    </relations>
+  </table>
+</configuration>

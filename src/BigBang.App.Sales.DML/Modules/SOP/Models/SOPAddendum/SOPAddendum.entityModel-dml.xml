@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+  <entityModel name="SALSOPAddendum" displayName="الحاقیه قرارداد" moduleName="SOP">
+	  <extensions >
+		  <attachment/>
+	  </extensions>
+    <propertiesCollection>
+      <properties>
+        <primitive name="ID" order="1" isReadOnly="true"  isVisible="false"/>
+        <primitive name="AmendmentDate" order="2" displayName="تاریخ الحاقیه" />
+		  <primitive name="Description" order="3" displayName="شرح تغییر" >
+			  <editor>
+				  <string multiline="true" maxLength="2000"/>
+			  </editor>
+		  </primitive>
+		  <primitive name="Amount" order="4" displayName="مبلغ جدید" >
+			  <formatType>
+				  <currency />
+			  </formatType>
+		  </primitive>
+		  <primitive name="EndDate" displayName="تاریخ پایان جدید" order="5"></primitive>
+		  <primitive name="Notes" order="6" displayName="توضیحات اضافی" >
+			  <editor>
+				  <string multiline="true" maxLength="2000"/>
+			  </editor>
+		  </primitive>
+        <reference name="Document" order="5" />
+        <reference name="AddendumType" order="1"  displayName="نوع الحاقیه"/>
+      </properties>
+    </propertiesCollection>
+  </entityModel>
+</configuration>

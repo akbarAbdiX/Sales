@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+  <entityModel name="SALSOPSeller" moduleName="SOP" displayName="فروشنده">
+    <propertiesCollection>
+      <properties>
+        <primitive name="Id" order="1" isReadOnly="true" isVisible="false" />
+        <primitive name="Name" order="2"  displayName="نام" />
+        <primitive name="EconomicCode" order="3" displayName="شماره اقتصادی" />
+        <primitive name="BranchCode" order="4"  displayName="کد شعبه"/>
+        <primitive name="Address" order="5"  displayName="آدرس"/>
+        <primitive name="PostalCode" order="6" displayName="کدپستی"/>
+        <primitive name="PhoneNumber" order="7" displayName="تلفن"/>
+        <primitive name="FaxNumber" order="8" displayName="فکس"/>
+        <primitive name="RegistrationNumber" order="9" displayName="شماره ثبت"/>
+        <primitive name="IsDefault" order="10"  displayName="پیش فرض"/>
+      </properties>
+    </propertiesCollection>
+	  <formatting>
+		  <property name="Name"/>
+		  <constant value="-"/>
+		  <property name="Address"/>
+	  </formatting>
+  </entityModel>
+</configuration>

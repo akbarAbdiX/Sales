@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPAddendumType" table="[tblSOPAddendumType]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="ID" type="Int32">
+      <column name="ID" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <bag cascade="save-update" name="SOPAddendums" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="AddendumTypeID" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPAddendum,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <property name="Code" type="Int32">
+      <column name="Code" not-null="true" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="Title" type="String">
+      <column name="Title" not-null="true" sql-type="nvarchar" length="100" />
+    </property>
+    <property name="TimeChange" type="Boolean">
+      <column name="TimeChange" not-null="true" sql-type="bit" />
+    </property>
+    <property name="AmountChange" type="Boolean">
+      <column name="AmountChange" not-null="true" sql-type="bit" />
+    </property>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

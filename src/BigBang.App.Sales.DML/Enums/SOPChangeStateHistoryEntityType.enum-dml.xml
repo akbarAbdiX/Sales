@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/enum">
+	<enum name="SOPChangeStateHistoryEntityType">
+		<members>
+			<member name="ProformaInvoice" displayName="پیش فاکتور" value="1" />
+			<member name="Order" displayName="سفارش" value="2" />
+			<member name="Contract" displayName="قرارداد" value="3" />
+			<member name="Invoice" displayName="فاکتور" value="4" />
+			<member name="InvoiceIssuanceRequest" displayName="درخواست صدور فاکتور" value="5" />
+			<member name="PriceProposal" displayName="پیشنهاد قیمت" value="6" />
+		</members>
+	</enum>
+</configuration>

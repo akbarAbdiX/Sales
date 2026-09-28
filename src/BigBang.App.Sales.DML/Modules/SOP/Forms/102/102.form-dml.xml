@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/form">
+  <form name="102" displayName= "سفارش" moduleName="SOP">
+	<splitter orientation="Vertical">
+			<panel1 size="40%" >
+		  <modelComponent name="Document" model="SALSOPDocument"  title="سفارش"  viewType="Grid" >
+			  <toolBar>
+				  <items>
+					  <group>
+						  <items>
+							  <search/>
+						  </items>
+					  </group>
+					  <group>
+						  <items>
+							  <refresh/>
+						  </items>
+					  </group>
+					  <group>
+						  <items>
+							  <subMenu>
+								  <icon>
+									  <font name="far fa-bolt" color="#ff9800"/>
+								  </icon>
+								  <items>
+									  <customCommand command="CalculateAdjustment" title="تعدیل"/>
+									  <customCommand command="Transition" title="انتقال اطلاعات به مرحله بعد"/>
+									  <customCommand command="SetDocumentToConfirmed" title="ثبت نهایی"/>
+									  <customCommand command="SetDocumentToDiscarded" title="ابطال"/>
+								  </items>
+							  </subMenu>
+						  </items>
+					  </group>
+					  <group>
+						  <items>
+							  <addSubMenu/>
+							  <delete/>
+						  </items>
+					  </group>
+					  <group>
+						  <items>
+							  <attachment/>
+						  </items>
+					  </group>
+					  <group>
+						  <items>
+							  <transitionsSubMenu>
+								  <enable>
+
+								  </enable>
+							  </transitionsSubMenu>
+						  </items>
+					  </group>
+					  <group>
+						  <items>
+							  <help/>
+						  </items>
+					  </group>
+				  </items>
+			  </toolBar>
+			  <modelSettings displayName="سفارش" filterCriteria=""> 
+				  <properties>
+					  <property name="No" displayName="شماره سفارش" order="1"/>
+					  <property name="IssueDate" displayName="تاریخ صدور" order="2"/>
+					  <property name="CustomerID" displayName="مشتری" order="3"/>
+					  <property name="DocumentType" displayName="نوع سند" order="4" isVisible="false"/>
+					  <property name="EndDate" displayName="تاریخ مورد انتظار تحویل" order="5"/>
+					  <property name="Amount" displayName="مبلغ" order="6" isReadOnly="true" />
+					  <property name="DiscountAmount" displayName="تخفیف" order="7" isReadOnly="true" />
+					  <property name="AdditionalChargesAmount" displayName="هزینه اضافه" order="8" isReadOnly="true" />
+					  <property name="TaxAmount" displayName="مالیات" order="9" isReadOnly="true"/>
+					  <property name="TotalAmount" displayName="مبلغ کل" order="10" isReadOnly="true" />
+					  <property name="Description" displayName="توضیحات" order="11"/>
+					  <property name="UniqueTaxIdentifier" displayName="شماره منحصر به فرد مالیاتی" isVisible="false"/>
+					  <property name="ProductType" order="14" displayName="نوع کالا" isVisible="false"/>
+					  <property name="StartDate" isVisible="false"/>
+					  <property name="Document" displayName="سند مبدا"  order="3">
+						  <editor>
+							  <model newItem="Hide" openForm="Hide" showLocateForm="false"/>
+						  </editor>
+					  </property>
+				  </properties>
+				  <layoutExpressions>
+					  <filterField field="Document" bindTo="CustomerID">
+						  <businessContext>
+							  <businessContextItem name="FilterDocumentType">
+								  <value><![CDATA[Model.DocumentType.ID]]></value>
+							  </businessContextItem>
+							  <businessContextItem name="FilterCustomerId" >
+								  <value><![CDATA[Model.CustomerID.Id]]></value>
+							  </businessContextItem>
+							  <businessContextItem name="FilterDocumentId" >
+								  <value>true</value>
+							  </businessContextItem>
+						  </businessContext>
+					  </filterField>
+				  </layoutExpressions>
+			  </modelSettings>
+			  <businessContext>
+				  <businessContextItem name="DocumentTypeOrder">
+					  <value>true</value>
+				  </businessContextItem>
+			  </businessContext> 
+		  </modelComponent>
+			</panel1>
+			<panel2 size="60%">
+				<splitter orientation="Horizontal">
+					<panel1 size="50%">
+						<tab>
+							<items>
+								<item title="اقلام سفارش">
+									<associateModelComponent owner="Document" associateProperty="SOPDocumentItems" name="DocumentItem" title="اقلام سفارش" viewType="Grid">
+										<modelSettings displayName="اقلام سفارش" >
+											<properties>
+												<property name="ProductAndServiceRate"  displayName="نرخ کالا/خدمت" order="2" />
+												<property name="Quantity"  displayName="مقدار" order="3" />
+												<property name="Amount"  displayName="مبلغ" order="4" isReadOnly="true" />
+												<property name="Discount"  displayName="تخفیف" order="5" isReadOnly="true" />
+												<property name="AdditionalCharge"  displayName="هزینه اضافه" order="6"  isReadOnly="true"/>
+												<property name="Tax"  displayName="مالیات" order="7" isReadOnly="true" />
+												<property name="TotalPrice"  displayName="جمع کل" order="8" isReadOnly="true" />
+												<property name="Description"  displayName="شرح" order="9" />
+												<property name="ItemID"  displayName="کالا /خدمت"  order="1"/>
+												<property name="Document" isVisible="false"/>
+												<property name="UnitPrice" isVisible="false"/>
+											</properties>
+										</modelSettings>
+									</associateModelComponent>
+								</item>
+							</items>
+						</tab>
+					</panel1>
+					<panel2 size="50%">
+						<tab>
+							<items>
+								<item title="تعدیلات">
+									<associateModelComponent owner="DocumentItem" associateProperty="SOPDocumentAdjustments" name="DocumentAdjustment" title="تعدیلات " viewType="Grid">
+										<modelSettings >
+											<properties>
+												<property name="Adjustment" displayName="نوع تعدیل"   order="1"/>
+												<property name="AdjustmentAmount" displayName="مبلغ"   order="2"/>
+												<property name="ParameterAmount" isVisible="false"></property>
+												<property name="DocumentItem" isVisible="false"></property>
+											</properties>
+										</modelSettings>
+									</associateModelComponent>
+								</item>
+							</items>
+						</tab>
+					</panel2>
+				</splitter>
+			</panel2>
+		</splitter>
+	</form>
+</configuration>

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/report">
+	<reportModel name="IssuedInvoiceItemReportService.GetIssuedInvoiceItems" displayName="گزارش  جزئیات فاکتورهای صادر شده " moduleName="SOP" reportType="Static" isSearchable="true">
+		<parametersCollection>
+			<parameters>
+				<parameter name="documentID" displayName="شماره فاکتور" allowNull="true" sourceType="UserDefined" isVisible="false">
+					<parameterType>
+						<int/>
+					</parameterType>
+				</parameter>
+			</parameters>
+		</parametersCollection>
+		<propertiesCollection>
+			<properties>
+				<property name="ProductName" displayName="کالا">
+					<propertyType>
+						<string/>
+					</propertyType>
+				</property>
+				<property name="ProductServiceCode" displayName="شناسه کالا">
+					<propertyType>
+						<string/>
+					</propertyType>
+				</property>
+				<property name="Amount" displayName="نرخ کالا ">
+					<propertyType>
+						<decimal/>
+					</propertyType>
+					<formatType>
+						<currency/>
+					</formatType>
+				</property>
+				<property name="Quantity" displayName="تعداد">
+					<propertyType>
+						<int/>
+					</propertyType>
+				</property>
+				<property name="UnitPrice" displayName="مبلغ ">
+					<propertyType>
+						<decimal/>
+					</propertyType>
+					<formatType>
+						<currency/>
+					</formatType>
+				</property>
+				<property name="Discount" displayName="تخفیف ">
+					<propertyType>
+						<decimal/>
+					</propertyType>
+					<formatType>
+						<currency/>
+					</formatType>
+				</property>
+				<property name="Tax" displayName="مالیات ">
+					<propertyType>
+						<decimal/>
+					</propertyType>
+					<formatType>
+						<currency/>
+					</formatType>
+				</property>
+				<property name="TotalPrice" displayName="مبلغ نهایی ">
+					<propertyType>
+						<decimal/>
+					</propertyType>
+					<formatType>
+						<currency/>
+					</formatType>
+				</property>
+				<property name="PrintDescription" displayName="عنوان در چاپ">
+					<propertyType>
+						<string/>
+					</propertyType>
+				</property>
+				<property name="Description" displayName="شرح">
+					<propertyType>
+						<string/>
+					</propertyType>
+				</property>
+				<property name="DocumentID" displayName="سند"  isSearchable="false" isVisible="false">
+					<propertyType>
+						<int/>
+					</propertyType>
+				</property>
+			</properties>
+		</propertiesCollection>
+	</reportModel>
+</configuration>

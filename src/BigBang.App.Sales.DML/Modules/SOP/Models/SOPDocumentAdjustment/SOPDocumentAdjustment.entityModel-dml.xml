@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+  <entityModel name="SALSOPDocumentAdjustment" displayName="تعدیلات اقلام سند" moduleName="SOP">
+    <propertiesCollection>
+      <properties>
+        <primitive name="ID" order="1" isReadOnly="true" isVisible="false" />
+		  <primitive name="AdjustmentAmount" order="2" displayName="مبلغ محاسبه شده"  isReadOnly="true">
+			  <formatType>
+				  <currency />
+			  </formatType>
+		  </primitive>
+		  <primitive name="ParameterAmount" order="3" displayName="مبلغ وارد شده" >
+			  <formatType>
+				  <currency />
+			  </formatType>
+		  </primitive>
+        <reference name="Adjustment" order="3"  displayName="تعدیلات"/>
+        <reference name="DocumentItem" order="4"  displayName="اقلام سند" />
+      </properties>
+		<changeExpressions>
+			<changeExpression>
+				<properties>
+					<source name="Adjustment"/>
+					<target name="AdjustmentAmount" />
+				</properties>
+				<expression><![CDATA[executeCommand("Sales","FindDocumentAdjustmentAmount",createObject("adjustment",Model.Adjustment,"documentItem",Model.DocumentItem))]]></expression>
+			</changeExpression>
+		</changeExpressions>
+		<layoutExpressions>
+			<filterField field="Adjustment" bindTo="DocumentItem">
+				<businessContext>
+					<businessContextItem name="FilterAdjustment">
+						<value><![CDATA[Model.DocumentItem.ID]]></value>
+					</businessContextItem>
+				</businessContext>
+			</filterField>
+		</layoutExpressions>
+    </propertiesCollection>
+  </entityModel>
+</configuration>

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "BigBang.Applications.Sales",
+    "title": "BigBang Sales",
+    "subPackages": {
+      "type": "accept",
+      "regexList": [
+        "^BigBang\\.App\\.Sales$",
+        "^BigBang\\.App\\.Sales\\.DML$",
+        "^BigBang\\.App\\.Sales\\.Migrations$",
+        "^BigBang\\.App\\.Sales\\.Domain$",
+        "^BigBang\\.App\\.Sales\\.Interfaces$",
+        "^BigBang\\.App\\.Sales\\.ERPSuiteCore\\.Extended$"
+      ]
+    }
+  }
+]

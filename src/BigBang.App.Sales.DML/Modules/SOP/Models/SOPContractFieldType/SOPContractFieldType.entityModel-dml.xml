@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+  <entityModel name="SALSOPContractFieldType" displayName="انواع فیلد قرارداد" moduleName="SOP">
+    <propertiesCollection>
+      <properties>
+        <primitive name="ID" order="1" isReadOnly="true" isVisible="false" />
+        <primitive name="Code" order="2"  displayName="کد"/>
+        <primitive name="FieldName" order="3"  displayName="نام فیلد"/>
+        <primitive name="IsRequired" order="4" displayName="اجباری" />
+      </properties>
+    </propertiesCollection>
+	  <formatting>
+		  <property name="FieldName"/>
+	  </formatting>
+  </entityModel>
+</configuration>

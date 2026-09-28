@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPPaymentVatShare" table="[tblSOPPaymentVatShare]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="Id" type="Int32">
+      <column name="Id" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <property name="FromDate" type="DateTime">
+      <column name="FromDate" not-null="true" sql-type="date" />
+    </property>
+    <property name="ToDate" type="DateTime">
+      <column name="ToDate" not-null="false" sql-type="date" />
+    </property>
+    <property name="VatShare" type="Int64">
+      <column name="VatShare" not-null="true" precision="19" scale="0" sql-type="bigint" />
+    </property>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

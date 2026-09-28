@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+  <entityModel name="SALSOPDocumentFlow" displayName="گردش کار فروش" moduleName="SOP">
+    <propertiesCollection>
+      <properties>
+        <primitive name="ID" order="1" isReadOnly="true" isVisible="false" />
+        <primitive name="Level" order="2" displayName="مرحله" />
+        <reference name="DocumentType" order="2" displayName="نوع اسناد فروش" />
+      </properties>
+    </propertiesCollection>
+	  <formatting>
+		  <property name="Level"/>
+		  <constant value="-"/>
+		  <property name="DocumentType"/>
+	  </formatting>
+  </entityModel>
+</configuration>

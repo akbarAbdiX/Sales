@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/enum">
+	<enum name="SOPChangeStateHistoryEntityStateType">
+		<members>
+			<member name="Draft" displayName="ثبت اولیه" value="1" />
+			<member name="Sent" displayName="ارسال شده" value="2" />
+			<member name="Confirmed" displayName="ثبت نهایی" value="3" />
+			<member name="Discarded" displayName="ابطال" value="4" />
+			<member name="Rejected" displayName="عدم تایید توسط مالی" value="5" />
+			<member name="Approved" displayName="تایید توسط مالی" value="6" />
+			<member name="ApprovedBySalesManagment" displayName="تایید توسط مدیر فروش" value="7" />
+			<member name="RejectedBySalesManagment" displayName="عدم تایید توسط مدیر فروش" value="8" />
+		</members>
+	</enum>
+</configuration>

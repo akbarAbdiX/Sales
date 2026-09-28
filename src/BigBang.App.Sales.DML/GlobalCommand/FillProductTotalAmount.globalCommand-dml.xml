@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/globalCommand">
+	<globalCommand>
+		<csharp name="FindProductTotalAmount" displayName="" serviceName="SOPFillProductTotalAmount">
+			<parametersCollection>
+				<parameters>
+					<parameter name="unitPrice">
+						<parameterType>
+							<decimal/>
+						</parameterType>
+					</parameter>
+					<parameter name="quantity">
+						<parameterType>
+							<int/>
+						</parameterType>
+					</parameter>
+					<parameter name="id">
+						<parameterType>
+							<int/>
+						</parameterType>
+					</parameter>
+					<parameter name="itemID">
+						<parameterType>
+							<model sourceModel="ERPSuiteCore.SuiteCoreProductDetail"/>
+						</parameterType>
+					</parameter>
+					<parameter name="documentId">
+						<parameterType>
+							<int/>
+						</parameterType>
+					</parameter>
+				</parameters>
+			</parametersCollection>
+		</csharp>
+	</globalCommand>
+</configuration>

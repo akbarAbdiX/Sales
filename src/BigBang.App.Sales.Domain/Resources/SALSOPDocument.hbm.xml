@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPDocument" table="[tblSOPDocument]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="ID" type="Int32">
+      <column name="ID" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <bag cascade="save-update" name="SOPContractStages" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="DocumentId" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPContractStage,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <bag cascade="save-update" name="SOPPaymentBreakdowns" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="DocumentId" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPPaymentBreakdown,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <bag cascade="save-update" name="SOPPaymentTerms" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="DocumentId" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPPaymentTerm,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <bag cascade="save-update" name="SOPAddendums" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="DocumentID" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPAddendum,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <bag cascade="save-update" name="SOPContractAdditionalInfoes" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="DocumentID" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPContractAdditionalInfo,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <property name="No" type="Int32">
+      <column name="No" not-null="true" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="IssueDate" type="DateTime">
+      <column name="IssueDate" not-null="true" sql-type="datetime" />
+    </property>
+    <property name="StartDate" type="DateTime">
+      <column name="StartDate" not-null="false" sql-type="datetime" />
+    </property>
+    <property name="EndDate" type="DateTime">
+      <column name="EndDate" not-null="false" sql-type="datetime" />
+    </property>
+    <property name="Amount" type="Decimal">
+      <column name="Amount" not-null="true" precision="18" scale="0" sql-type="decimal" default="((0))" />
+    </property>
+    <property name="DiscountAmount" type="Decimal">
+      <column name="DiscountAmount" not-null="true" precision="18" scale="0" sql-type="decimal" default="((0))" />
+    </property>
+    <property name="AdditionalChargesAmount" type="Decimal">
+      <column name="AdditionalChargesAmount" not-null="true" precision="18" scale="0" sql-type="decimal" default="((0))" />
+    </property>
+    <property name="TaxAmount" type="Decimal">
+      <column name="TaxAmount" not-null="true" precision="18" scale="0" sql-type="decimal" default="((0))" />
+    </property>
+    <property name="TotalAmount" type="Decimal">
+      <column name="TotalAmount" not-null="true" precision="18" scale="0" sql-type="decimal" default="((0))" />
+    </property>
+    <property name="Description" type="String">
+      <column name="Description" not-null="false" sql-type="nvarchar" length="2147483647" />
+    </property>
+    <property name="StateID" type="BigBang.App.Sales.Domain.Enums.DbSOPChangeStateHistoryEntityStateTypeEnumType, BigBang.App.Sales.Domain">
+      <column name="StateID" not-null="false" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="UniqueTaxIdentifier" type="String">
+      <column name="UniqueTaxIdentifier" not-null="false" sql-type="nvarchar" length="20" />
+    </property>
+    <property name="ContractNumber" type="String">
+      <column name="ContractNumber" not-null="false" sql-type="nvarchar" length="20" />
+    </property>
+    <property name="RejectionReason" type="String">
+      <column name="RejectionReason" not-null="false" sql-type="nvarchar" length="500" />
+    </property>
+    <property name="Color" type="Int32">
+      <column name="Color" not-null="false" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="PaymentTermsType" type="BigBang.App.Sales.Domain.Enums.DbSOPSettlementMethodEnumType, BigBang.App.Sales.Domain">
+      <column name="PaymentTermsType" not-null="false" precision="10" scale="0" sql-type="int" />
+    </property>
+    <property name="PaymentTermAmount" type="Int64">
+      <column name="PaymentTermAmount" not-null="false" precision="19" scale="0" sql-type="bigint" />
+    </property>
+    <many-to-one name="Document" class="BigBang.App.Sales.Domain.SALSOPDocument,BigBang.App.Sales.Domain">
+      <column name="DocumentID" not-null="false" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <bag cascade="save-update" name="SOPDocuments" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="DocumentID" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPDocument,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <many-to-one name="DocumentType" class="BigBang.App.Sales.Domain.SALSOPDocumentType,BigBang.App.Sales.Domain">
+      <column name="DocumentTypeID" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="ProductType" class="BigBang.App.Sales.Domain.SALSOPProductType,BigBang.App.Sales.Domain">
+      <column name="ProductTypeId" not-null="false" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="Seller" class="BigBang.App.Sales.Domain.SALSOPSeller,BigBang.App.Sales.Domain">
+      <column name="SellerID" not-null="false" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <bag cascade="save-update" name="SOPDocumentItems" inverse="true" generic="true" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangOneToManyPersister,  BigBang.NHibernateLibrary">
+      <key>
+        <column name="DocumentID" />
+      </key>
+      <one-to-many class="BigBang.App.Sales.Domain.SALSOPDocumentItem,BigBang.App.Sales.Domain" />
+      <filter name="DynamicRestriction" condition="1=1" />
+    </bag>
+    <many-to-one name="CustomerID" class="BigBang.App.ERPSuiteCore.Domain.SuiteCoreParty,BigBang.App.ERPSuiteCore.Domain">
+      <column name="CustomerID" not-null="true" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="CustomerAddress" class="BigBang.App.ERPSuiteCore.Domain.SuiteCoreAddress,BigBang.App.ERPSuiteCore.Domain">
+      <column name="CustomerAddress" not-null="false" sql-type="int" />
+    </many-to-one>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

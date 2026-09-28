@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+  <entityModel name="SALSOPPaymentTerm" displayName="شرایط پرداخت قرارداد" moduleName="SOP">
+    <propertiesCollection>
+      <properties>
+        <primitive name="Id" order="1" isReadOnly="true"  isVisible="false"/>
+        <primitive name="PerAmount" order="5"  displayName="درصد" />
+		  <primitive name="Amount" order="6" displayName="مبلغ" >
+			  <formatType>
+				  <currency />
+			  </formatType>
+		  </primitive>
+        <primitive name="DueDate" order="7"   displayName="تاریخ سررسید پرداخت"/>
+        <primitive name="IsDeductible" order="8"  displayName="کسر از هر فاکتور" />
+        <primitive name="IsGuarantee" order="9"  displayName="ضمانتنامه"/>
+        <primitive name="ReleaseCondition" order="11" displayName="شرایط آزادسازی ضمانتنامه" />
+		  <primitive name="SettlementMethod" order="12" displayName="شرایط پرداخت">
+			  <propertyType>
+				  <enum name="SOPSettlementMethod" />
+			  </propertyType>
+		  </primitive>
+        <primitive name="Description" order="13"  displayName="توضیح تکمیلی" />
+        <reference name="Document" order="2" displayName="قرارداد"/>
+        <reference name="DueType" order="4" displayName="موعد پرداخت" />
+        <reference name="GuaranteeType" order="10" displayName="نوع ضمانت نامه" />
+        <reference name="PaymentTermsType" order="3" displayName="نوع پرداخت" />
+      </properties>
+		<changeExpressions>
+				<changeExpression>
+					<properties>
+						<source name="Document"/>
+						<source name="PerAmount"/>
+						<target name="Amount" />
+					</properties>
+					<expression><![CDATA[executeCommand("Sales","FindContractPaymentAmount",createObject("document",Model.Document,"perAmount",Model.PerAmount))]]></expression>
+				</changeExpression>
+			</changeExpressions>
+    </propertiesCollection>
+  </entityModel>
+</configuration>

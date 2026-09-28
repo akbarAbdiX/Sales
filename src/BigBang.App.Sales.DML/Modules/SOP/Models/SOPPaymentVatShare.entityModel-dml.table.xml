@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel/table">
+  <table schemaOwner="dbo" name="tblSOPPaymentVatShare" primaryColumnName="Id">
+    <columns>
+      <column Name="Id" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="true" netType="System.Int32" allowNull="false" />
+      <column Name="FromDate" typeName="date" isComputed="false" isAutoNumber="false" netType="System.DateTime" allowNull="false" />
+      <column Name="ToDate" typeName="date" isComputed="false" isAutoNumber="false" netType="System.DateTime" allowNull="true" />
+      <column Name="VatShare" typeName="bigint" scale="0" precision="19" isComputed="false" isAutoNumber="false" netType="System.Int64" allowNull="false" />
+    </columns>
+  </table>
+</configuration>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel/table">
+  <table schemaOwner="dbo" name="tblSOPDocumentItem" primaryColumnName="ID">
+    <columns>
+      <column Name="ID" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="true" netType="System.Int32" allowNull="false" />
+      <column Name="ItemID" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="false" />
+      <column Name="Amount" typeName="decimal" scale="0" precision="18" isComputed="false" isAutoNumber="false" netType="System.Decimal" allowNull="true" />
+      <column Name="Quantity" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="false" />
+      <column Name="UnitPrice" typeName="decimal" scale="0" precision="18" isComputed="false" isAutoNumber="false" netType="System.Decimal" allowNull="false" defaultValue="((0))" />
+      <column Name="Discount" typeName="decimal" scale="0" precision="18" isComputed="false" isAutoNumber="false" netType="System.Decimal" allowNull="false" defaultValue="((0))" />
+      <column Name="AdditionalCharge" typeName="decimal" scale="0" precision="18" isComputed="false" isAutoNumber="false" netType="System.Decimal" allowNull="false" defaultValue="((0))" />
+      <column Name="Tax" typeName="decimal" scale="0" precision="18" isComputed="false" isAutoNumber="false" netType="System.Decimal" allowNull="false" defaultValue="((0))" />
+      <column Name="TotalPrice" typeName="decimal" scale="0" precision="18" isComputed="false" isAutoNumber="false" netType="System.Decimal" allowNull="false" defaultValue="((0))" />
+      <column Name="Description" typeName="nvarchar" isComputed="false" isAutoNumber="false" length="-1" netType="System.String" allowNull="true" />
+      <column Name="PrintDescription" typeName="nvarchar" isComputed="false" isAutoNumber="false" length="-1" netType="System.String" allowNull="true" />
+      <column Name="DocumentID" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="false" />
+      <column Name="ProductAndServiceRateID" typeName="int" scale="0" precision="10" isComputed="false" isAutoNumber="false" netType="System.Int32" allowNull="false" />
+    </columns>
+    <relations>
+      <relation targetTable="tblSOPDocument" sourceColumn="DocumentID" deleteRule="NONE" />
+      <relation targetTable="tblSOPProductAndServiceRate" sourceColumn="ProductAndServiceRateID" deleteRule="NONE" />
+    </relations>
+  </table>
+</configuration>

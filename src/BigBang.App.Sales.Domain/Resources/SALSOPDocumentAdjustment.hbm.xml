@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="BigBang.App.Sales.Domain" namespace="BigBang.App.Sales.Domain" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SALSOPDocumentAdjustment" table="[tblSOPDocumentAdjustment]" schema="[$sales_database_name$].dbo" persister="BigBang.NHibernateLibrary.DynamicRestriction.BigBangSingleTableEntityPersister,  BigBang.NHibernateLibrary">
+    <id name="ID" type="Int32">
+      <column name="ID" not-null="true" precision="10" scale="0" sql-type="int" />
+      <generator class="identity" />
+    </id>
+    <property name="AdjustmentAmount" type="Decimal">
+      <column name="AdjustmentAmount" not-null="true" precision="18" scale="0" sql-type="decimal" default="((0))" />
+    </property>
+    <property name="ParameterAmount" type="Decimal">
+      <column name="ParameterAmount" not-null="true" precision="18" scale="0" sql-type="decimal" default="((0))" />
+    </property>
+    <many-to-one name="Adjustment" class="BigBang.App.Sales.Domain.SALSOPAdjustment,BigBang.App.Sales.Domain">
+      <column name="AdjustmentID" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <many-to-one name="DocumentItem" class="BigBang.App.Sales.Domain.SALSOPDocumentItem,BigBang.App.Sales.Domain">
+      <column name="DocumentItemID" not-null="true" precision="10" scale="0" sql-type="int" />
+    </many-to-one>
+    <filter name="DynamicRestriction" condition="1=1" />
+  </class>
+</hibernate-mapping>

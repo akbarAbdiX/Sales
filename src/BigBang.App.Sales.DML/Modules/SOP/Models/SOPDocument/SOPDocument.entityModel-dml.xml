@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/entityModel">
+	<entityModel  name="SALSOPDocument" displayName="سند فروش" moduleName="SOP" >
+		<selfReferencePolicy >
+			<manual  parentProperty="" />
+		</selfReferencePolicy>
+		<propertiesCollection>
+			<properties>
+				<primitive name="ID" order="1" isReadOnly="true" isVisible="false" />
+				<primitive name="No" order="2"  displayName="شماره سند" />
+				<primitive name="ContractNumber" order="2"  displayName="شماره قرارداد" isVisible="false"/>
+				<primitive name="IssueDate" order="3"  displayName="تاریخ صدور"/>
+				<primitive name="StartDate" order="4" displayName="تاریخ شروع" />
+				<primitive name="EndDate" order="5" displayName="تاریخ پایان" />
+				<primitive name="Amount" order="6" displayName="مبلغ"  >
+					<formatType>
+						<currency />
+					</formatType>
+				</primitive>
+				<primitive name="DiscountAmount" order="7" displayName="تخفیف">
+					<formatType>
+						<currency/>
+					</formatType>
+				</primitive>
+				<primitive name="AdditionalChargesAmount" order="8" displayName="هزینه اضافه">
+					<formatType>
+						<currency />
+					</formatType>
+				</primitive>
+				<primitive name="TaxAmount" order="9" displayName="مالیات"  >
+					<formatType>
+						<currency />
+					</formatType>
+				</primitive>
+				<primitive name="TotalAmount" order="10" displayName="مبلغ کل" >
+					<formatType>
+						<currency />
+					</formatType>
+				</primitive>
+				<primitive name="Description" order="11" displayName="توضیحات">
+					<editor>
+						<string multiline="true" maxLength="2000"/>
+					</editor>
+				</primitive>
+				<primitive name="RejectionReason" order="12" displayName="دلیل عدم تایید"  isReadOnly="true" isVisible="false">
+					<editor>
+						<string multiline="true" maxLength="500"/>
+					</editor>
+				</primitive>
+				<primitive name="CustomerID" order="13" displayName="مشتری" >
+					<virtualReference target="ERPSuiteCore.SuiteCoreParty"/>
+				</primitive>
+				<primitive name="CustomerAddress" order="16" displayName="آدرس خریدار"  isVisible="false">
+					<virtualReference target="ERPSuiteCore.SuiteCoreAddress"/>
+				</primitive>
+				<reference  name="Document" order="12" displayName="سند مبدا" isReadOnly="false" >
+				</reference >
+				<primitive name="StateID" displayName="وضعیت" isReadOnly="true">
+					<propertyType>
+						<enum name="SOPChangeStateHistoryEntityStateType"/>
+					</propertyType>
+				</primitive>
+				<primitive name="Color" order="11" isVisible="false"/>
+				<primitive name="PaymentTermAmount" order="11" displayName="مبلغ دریافتی" isVisible="false"/>
+				<primitive name="PaymentTermsType" order="13"  displayName="روش پرداخت" isVisible="false">
+					<propertyType>
+						<enum name="SOPSettlementMethod"/>
+					</propertyType>
+				</primitive>
+				<primitive name="UniqueTaxIdentifier" displayName="شماره منحصر به فرد مالیاتی" isVisible="false"/>
+				<reference name="DocumentType" order="14" displayName="نوع سند" />
+				<reference name="ProductType" order="14" displayName="نوع کالا" />
+				<reference name="Seller" order="15" displayName="آدرس فروشنده" />
+			</properties>
+			<layoutExpressions>
+				<foreColor>
+					<colors>
+						<color color="rgb(255, 0, 0)">
+							<condition> <![CDATA[Model.Color == 1]]></condition>
+						</color>
+					</colors>
+				</foreColor>
+			</layoutExpressions>
+			<changeExpressions>
+				<changeExpression>
+					<properties>
+						<source name="CustomerID"/>
+						<target name="CustomerAddress"/>
+					</properties>
+					<expression>
+						<![CDATA[executeCommand("Sales","FindDefaultCustomerAddress",createObject("customerId",Model.CustomerID))]]>
+					</expression>
+				</changeExpression>
+			</changeExpressions>
+		</propertiesCollection>
+		<commands>
+			<custom name="SetDocumentToSent" displayName="ارسال شده" order="1">
+				<parametersCollection>
+					<parameters>
+						<parameter name="document" allowNull="false" order="1" sourceType="Self" multiplicity="Single" />
+					</parameters>
+				</parametersCollection>
+				<canExecute>
+					<![CDATA[Model.StateID == 1]]>
+				</canExecute>
+			</custom>
+			<custom name="SetDocumentToApprove" displayName="تایید توسط مالی" order="2">
+				<parametersCollection>
+					<parameters>
+						<parameter name="document" allowNull="false" order="1" sourceType="Self" multiplicity="Single" />
+					</parameters>
+				</parametersCollection>
+				<canExecute>
+					<![CDATA[Model.StateID == 7]]>
+				</canExecute>
+			</custom>
+
+			<custom name="SetDocumentToReject" displayName="عدم تایید توسط مالی" order="3">
+				<parametersCollection>
+					<parameters>
+						<parameter name="document" allowNull="false" order="1" sourceType="Self" multiplicity="Single" />
+						<parameter name="RejectionReason" displayName="دلیل عدم تایید" allowNull="false" order="2" sourceType="UserDefined" multiplicity="Single" >
+							<parameterType>
+								<string />
+							</parameterType>
+							<validations>
+								<notNull/>
+								<string min="5"/>
+							</validations>
+							<editor>
+								<string multiline="true" maxLength="2000"/>
+							</editor>
+						</parameter>
+					</parameters>
+				</parametersCollection>
+				<canExecute>
+					<![CDATA[Model.StateID == 7]]>
+				</canExecute>
+			</custom>
+			<custom name="SetDocumentToConfirmed" displayName="ثبت نهایی" order="4">
+				<parametersCollection>
+					<parameters>
+						<parameter name="document" allowNull="false" order="1" sourceType="Self" multiplicity="Single" />
+					</parameters>
+				</parametersCollection>
+				<canExecute>
+					<!--<![CDATA[Model.StateID == 6 || Model.DocumentType.Code != 5]]>-->
+				</canExecute>
+			</custom>
+			<custom name="SetDocumentToApprovedBySalesManagment" displayName="تایید توسط مدیر فروش" order="5">
+				<parametersCollection>
+					<parameters>
+						<parameter name="document" allowNull="false" order="1" sourceType="Self" multiplicity="Single" />
+					</parameters>
+				</parametersCollection>
+				<canExecute>
+					<![CDATA[Model.StateID == 3 || Model.StateID == 5]]>
+				</canExecute>
+			</custom>
+			<custom name="SetDocumentToRejectedBySalesManagment" displayName="عدم تایید توسط مدیر فروش" order="6">
+				<parametersCollection>
+					<parameters>
+						<parameter name="document" allowNull="false" order="1" sourceType="Self" multiplicity="Single" />
+						<parameter name="RejectionReason" displayName="دلیل عدم تایید" allowNull="false" order="2" sourceType="UserDefined" multiplicity="Single" >
+							<parameterType>
+								<string />
+							</parameterType>
+							<validations>
+								<notNull/>
+								<string min="5"/>
+							</validations>
+							<editor>
+								<string multiline="true" maxLength="2000"/>
+							</editor>
+						</parameter>
+					</parameters>
+				</parametersCollection>
+				<canExecute>
+					<![CDATA[Model.StateID == 3 || Model.StateID == 5]]>
+				</canExecute>
+			</custom>
+			<custom name="SetDocumentToDiscarded" displayName="ابطال" order="7">
+				<parametersCollection>
+					<parameters>
+						<parameter name="document" allowNull="false" order="1" sourceType="Self" multiplicity="Single" />
+					</parameters>
+				</parametersCollection>
+			</custom>
+			<custom name="CalculateAdjustment" displayName="تعدیل" >
+				<parametersCollection>
+					<layoutExpressions>
+						<filterField field ="adjustment">
+							<businessContext>
+								<businessContextItem name="FilterCalculateAdjustment">
+									<value><![CDATA[Model.ID]]></value>
+								</businessContextItem>
+							</businessContext>
+						</filterField>
+					</layoutExpressions>
+					<parameters>
+						<parameter name="document" displayName="سند" sourceType="Self"/>
+						<parameter name="adjustment" displayName="تعدیل"  order="1">
+							<validations>
+								<notNull/>
+							</validations>
+							<parameterType>
+								<model sourceModel="SALSOPAdjustment" />
+							</parameterType>
+						</parameter>
+					</parameters>
+				</parametersCollection>
+			</custom>
+			<custom name="Transition" displayName="انتقال اطلاعات به مرحله بعد"  >
+				<parametersCollection>
+					<parameters>
+						<parameter name="document" displayName="سند" sourceType="Self"/>
+					</parameters>
+				</parametersCollection>
+			</custom>
+		</commands>
+		<formatting>
+			<property name="No"/>
+			<constant value="-"/>
+			<property name="CustomerID"/>
+		</formatting>
+		<printTemplates>
+			<printTemplate  name="SALSOPDocumentPrint" displayName="پیش نمایش پیش فاکتور"
+						   sourceLoaderType="BigBang.App.Sales.Reports.SOPDocumentPrintTemplateService,BigBang.App.Sales">
+				<provider>
+					<stimulSoft>
+						<template x-key="SALSOPDocumentPrint" />
+					</stimulSoft>
+				</provider>
+				<bindings>
+					<property sourceProperty="ID" targetParameter="ID" />
+				</bindings>
+				<parameters>
+					<parameter name="ID" sourceType="UserDefined">
+						<parameterType>
+							<int/>
+						</parameterType>
+					</parameter>
+				</parameters>
+			</printTemplate>
+			<printTemplate  name="SALSOPInvoiceIssuanceRequestPrint" displayName="پیش نمایش درخواست صدور فاکتور"
+						   sourceLoaderType="BigBang.App.Sales.Reports.SOPInvoiceIssuanceRequestPrintParametertTemplateService,BigBang.App.Sales">
+				<provider>
+					<stimulSoft>
+						<template x-key="SALSOPInvoiceIssuanceRequestPrint" />
+					</stimulSoft>
+				</provider>
+				<bindings>
+					<property sourceProperty="ID" targetParameter="ID" />
+				</bindings>
+				<parameters>
+					<parameter name="ID" sourceType="UserDefined">
+						<parameterType>
+							<int/>
+						</parameterType>
+					</parameter>
+				</parameters>
+			</printTemplate>
+			<printTemplate  name="SALSOPInvoicetPrint" displayName="پیش نمایش فاکتور"
+				   sourceLoaderType="BigBang.App.Sales.Reports.SOPInvoicePrintTemplateService,BigBang.App.Sales">
+				<provider>
+					<stimulSoft>
+						<template x-key="SALSOPInvoicetPrint" />
+					</stimulSoft>
+				</provider>
+				<bindings>
+					<property sourceProperty="ID" targetParameter="ID" />
+				</bindings>
+				<parameters>
+					<parameter name="ID" sourceType="UserDefined">
+						<parameterType>
+							<int/>
+						</parameterType>
+					</parameter>
+				</parameters>
+			</printTemplate>
+		</printTemplates>
+	</entityModel>
+</configuration>

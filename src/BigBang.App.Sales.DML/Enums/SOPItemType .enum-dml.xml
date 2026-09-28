@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="http://www.bigbang.io/dml/enum">
+  <enum name="SOPItemType">
+    <members>
+      <member name="Item" displayName="کالا " value="0" />
+      <member name="Service" displayName="خدمات " value="1" />
+    </members>
+  </enum>
+</configuration>
